@@ -1,0 +1,17 @@
+@import "./modern-normalise.css";
+
+/* Line height for accessibility */
+:root {
+  line-height: 1.5;
+}
+
+/* Remove default margin on p elements*/
+p {
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  display: block;
+  max-inline-size: 100%;
+}
