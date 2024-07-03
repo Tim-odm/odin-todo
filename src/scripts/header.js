@@ -17,5 +17,7 @@ export function drawHeader() {
     headerLeftSideDiv.children[i].classList.add("icon");
   }
 
-  return domHeader;
+  document.querySelector("#app").appendChild(domHeader);
 }
+
+drawHeader();
