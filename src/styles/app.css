@@ -24,4 +24,9 @@ header {
 
 .sidebar {
   background-color: var(--sidebar-bg-color);
+  grid-area: sidebar;
+}
+
+.main-content {
+  grid-area: main-content;
 }
