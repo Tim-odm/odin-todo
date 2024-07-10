@@ -1,3 +1,27 @@
+:root {
+  --header-bg-color: #fcd34d;
+  --sidebar-bg-color: #f5f5f5;
+}
+
 .icon {
   width: 32px;
+}
+
+#app {
+  display: grid;
+  height: 100vh;
+  grid-template-rows: 40px 100%;
+  grid-template-columns: 200px 1fr;
+  grid-template-areas:
+    "header header"
+    "sidebar main-content";
+}
+
+header {
+  background-color: var(--header-bg-color);
+  grid-area: header;
+}
+
+.sidebar {
+  background-color: var(--sidebar-bg-color);
 }
