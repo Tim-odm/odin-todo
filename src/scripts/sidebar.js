@@ -1,3 +1,6 @@
+// Module import
+import { projectList } from "./todo-manager.js";
+
 // Icon imports
 import calIcon from "../assets/icons/calendar-today-outline.svg";
 import inboxIcon from "../assets/icons/inbox.svg";
@@ -17,6 +20,7 @@ export function drawSideBar() {
   const projectsOption = document.createElement("li");
   projectsOption.innerHTML = `${projectsIcon} <p>Projects</p>`;
   const projectListDiv = document.createElement("div");
+  projectListDiv.id = "project-list-div";
   sidebarOptions.append(inboxOption, todayOption, projectsOption, projectListDiv);
   for (let i = 0; i < sidebarOptions.childElementCount - 1; i++) {
     sidebarOptions.children[i].children[0].classList.add("icon");
@@ -24,6 +28,18 @@ export function drawSideBar() {
 
   sidebarDiv.appendChild(sidebarOptions);
   document.querySelector("#app").appendChild(sidebarDiv);
+}
+
+// Update projectListDiv
+export function updateProjectListDiv() {
+  const orderdedList = document.createElement("ol");
+  for (let i = 0; i < projectList.length; i++) {
+    const listItem = document.createElement("li");
+    listItem.textContent = projectList[i].name;
+    orderdedList.appendChild(listItem);
+    console.log(projectList[i].name);
+  }
+  document.getElementById("project-list-div").appendChild(orderdedList);
 }
 
 drawSideBar();

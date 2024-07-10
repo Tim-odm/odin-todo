@@ -13,4 +13,5 @@ function draw() {
   
 }
 
+sidebar.updateProjectListDiv();
 draw();
