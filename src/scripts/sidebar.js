@@ -36,6 +36,10 @@ export function updateProjectListDiv() {
   for (let i = 0; i < projectList.length; i++) {
     const listItem = document.createElement("li");
     listItem.textContent = projectList[i].name;
+    listItem.addEventListener("click", (e) => {
+      const projectHeader = document.querySelector(".main-content>.project-header");
+      projectHeader.innerHTML = projectList[i].name;
+    });
     orderdedList.appendChild(listItem);
   }
   document.getElementById("project-list-div").appendChild(orderdedList);
