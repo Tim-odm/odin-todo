@@ -11,23 +11,40 @@ export function drawSideBar() {
   const sidebarDiv = document.createElement("div");
   sidebarDiv.classList.add("sidebar");
 
-  const sidebarOptions = document.createElement("ul");
-  sidebarOptions.classList.add("sidebar-options");
-  const inboxOption = document.createElement("li");
-  inboxOption.innerHTML = `${inboxIcon} <p>Inbox</p>`;
-  const todayOption = document.createElement("li");
-  todayOption.innerHTML = `${calIcon} <p>Today</p>`;
-  const projectsOption = document.createElement("li");
-  projectsOption.innerHTML = `${projectsIcon} <p>Projects</p>`;
+  const sidebarOptions = drawSidebarOptions();
+
   const projectListDiv = document.createElement("div");
   projectListDiv.id = "project-list-div";
-  sidebarOptions.append(inboxOption, todayOption, projectsOption, projectListDiv);
+  sidebarOptions.appendChild(projectListDiv);
   for (let i = 0; i < sidebarOptions.childElementCount - 1; i++) {
     sidebarOptions.children[i].children[0].classList.add("icon");
   }
 
   sidebarDiv.appendChild(sidebarOptions);
   document.querySelector("#app").appendChild(sidebarDiv);
+}
+
+// Drow the sidebar options div
+function drawSidebarOptions() {
+  const sidebarOptions = document.createElement("ul");
+  sidebarOptions.classList.add("sidebar-options");
+  const inboxOption = document.createElement("li");
+  inboxOption.innerHTML = `${inboxIcon} <p>Inbox</p>`;
+  inboxOption.addEventListener("click", (e) => {
+    const projectHeader = document.querySelector(".main-content>.project-header");
+    projectHeader.innerHTML = "Inbox";
+  });
+  const todayOption = document.createElement("li");
+  todayOption.innerHTML = `${calIcon} <p>Today</p>`;
+  todayOption.addEventListener("click", (e) => {
+    const projectHeader = document.querySelector(".main-content>.project-header");
+    projectHeader.innerHTML = "Today";
+  });
+  const projectsOption = document.createElement("li");
+  projectsOption.innerHTML = `${projectsIcon} <p>Projects</p>`;
+  sidebarOptions.append(inboxOption, todayOption, projectsOption)
+
+  return sidebarOptions;
 }
 
 // Update projectListDiv
