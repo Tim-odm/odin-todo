@@ -11,7 +11,15 @@ p {
   padding: 0;
 }
 
+/* Remove default margin on header elements */
 h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+}
+
+/* Remove marker and padding for lists */
+ul, ol {
+  list-style-type: none;
+  padding: 0;
   margin: 0;
 }
 
