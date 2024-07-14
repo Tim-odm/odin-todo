@@ -42,6 +42,14 @@ function drawSidebarOptions() {
   });
   const projectsOption = document.createElement("li");
   projectsOption.innerHTML = `${projectsIcon} <p>Projects</p>`;
+  projectsOption.addEventListener("click", (e) => {
+    const projectListDiv = document.querySelector("#project-list-div");
+    if (projectListDiv.classList.toggle("hidden")) {
+      projectListDiv.style.height = "0px";
+    } else {
+      projectListDiv.style.height = projectListDiv.scrollHeight + "px";
+    }
+  });
   sidebarOptions.append(inboxOption, todayOption, projectsOption)
 
   return sidebarOptions;
@@ -59,7 +67,10 @@ export function updateProjectListDiv() {
     });
     orderdedList.appendChild(listItem);
   }
-  document.getElementById("project-list-div").appendChild(orderdedList);
+  const projectListDiv = document.getElementById("project-list-div");
+  projectListDiv.appendChild(orderdedList)
+  // Get height for transitions
+  projectListDiv.style.height = projectListDiv.scrollHeight + "px";
 }
 
 drawSideBar();

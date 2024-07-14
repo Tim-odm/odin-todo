@@ -1,3 +1,8 @@
 .sidebar li {
   cursor: pointer;
 }
+
+#project-list-div {
+  overflow: hidden;
+  transition: height .5s;
+}
