@@ -8,6 +8,7 @@ import "../styles/modern-normalise.css";
 import "../styles/reset.css";
 import "../styles/app.css";
 import "../styles/sidebar.css";
+import "../styles/main-content.css";
 
 const app = document.querySelector("#app");
 
