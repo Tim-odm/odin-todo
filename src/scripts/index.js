@@ -7,6 +7,7 @@ import * as main from "./main-content.js";
 import "../styles/modern-normalise.css";
 import "../styles/reset.css";
 import "../styles/app.css";
+import "../styles/header.css";
 import "../styles/sidebar.css";
 import "../styles/main-content.css";
 

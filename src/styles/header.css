@@ -1,0 +1,8 @@
+header div {
+  height: 100%;
+}
+
+.header-leftside {
+  align-items: center;
+  display: flex;
+}

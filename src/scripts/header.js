@@ -10,6 +10,7 @@ export function drawHeader() {
   const headerDiv = document.createElement("div");
   domHeader.appendChild(headerDiv);
   const headerLeftSideDiv = document.createElement("div");
+  headerLeftSideDiv.classList.add("header-leftside");
   headerDiv.appendChild(headerLeftSideDiv)
 
   headerLeftSideDiv.innerHTML = `${menuIcon}${homeIcon}${plusIcon}`;
