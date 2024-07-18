@@ -1,5 +1,13 @@
 .sidebar li {
+  align-items: center;
   cursor: pointer;
+  display: flex;
+  gap: 8px;
+  padding: 8px;
+}
+
+.sidebar li:hover {
+  background-color: var(--sidebar-highlight-color);
 }
 
 #project-list-div {
