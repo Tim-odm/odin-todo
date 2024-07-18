@@ -4,13 +4,28 @@
   display: flex;
   gap: 8px;
   padding: 8px;
+  transition: .2s ease-in;
 }
 
 .sidebar li:hover {
   background-color: var(--sidebar-highlight-color);
 }
 
+.sidebar li .arrow-icon.up {
+  margin-left: auto;
+  rotate: 180deg;
+  transition: .3s;
+}
+
+.sidebar li .arrow-icon.up.down {
+  rotate: 0deg;
+}
+
 #project-list-div {
   overflow: hidden;
   transition: height .5s;
+}
+
+#project-list-div li {
+  padding-left: 32px;
 }

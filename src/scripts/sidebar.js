@@ -5,6 +5,7 @@ import { projectList } from "./todo-manager.js";
 import calIcon from "../assets/icons/calendar-today-outline.svg";
 import inboxIcon from "../assets/icons/inbox.svg";
 import projectsIcon from "../assets/icons/hammer-wrench.svg";
+import menuUp from "../assets/icons/menu-up.svg";
 
 // Draw sidebar DOM elements
 export function drawSideBar() {
@@ -41,7 +42,8 @@ function drawSidebarOptions() {
     projectHeader.innerHTML = "Today";
   });
   const projectsOption = document.createElement("li");
-  projectsOption.innerHTML = `${projectsIcon} <p>Projects</p>`;
+  projectsOption.innerHTML = `${projectsIcon} <p>Projects</p>${menuUp}`;
+  projectsOption.children[2].classList.add("icon", "arrow-icon", "up");
   projectsOption.addEventListener("click", (e) => {
     const projectListDiv = document.querySelector("#project-list-div");
     if (projectListDiv.classList.toggle("hidden")) {
@@ -49,6 +51,7 @@ function drawSidebarOptions() {
     } else {
       projectListDiv.style.height = projectListDiv.scrollHeight + "px";
     }
+    projectsOption.children[2].classList.toggle("down");
   });
   sidebarOptions.append(inboxOption, todayOption, projectsOption)
 
