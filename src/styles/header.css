@@ -5,4 +5,20 @@ header div {
 .header-leftside {
   align-items: center;
   display: flex;
+  gap: 8px;
+  padding-left: 12px;
+}
+
+.header-leftside > svg {
+  border-radius: 50%;
+  box-sizing: content-box;
+  height: 32px;
+  padding: 4px;
+  width: 32px;
+  transition: .2s ease-in;
+}
+
+.header-leftside > svg:hover {
+  background-color: var(--header-highlight-color);
+  cursor: pointer;
 }

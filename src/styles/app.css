@@ -1,7 +1,8 @@
 :root {
   --header-bg-color: #fcd34d;
+  --header-highlight-color: #fde68a;
   --sidebar-bg-color: #f5f5f5;
-  --sidebar-highlight-color: #e5e5e5;
+  --sidebar-highlight-color: rgba(229, 229, 229, 0.8);
 }
 
 .icon {
