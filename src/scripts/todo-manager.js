@@ -84,14 +84,21 @@ export function toggleTodoCompletion(projectId, todoId) {
 }
 
 // Create 3 projects
-addNewProject('Project 1');
-addNewProject('Project 2');
-addNewProject('Project 3');
+// Start with inbox project
+export let inbox = createProject("Inbox");
+updateTodo(0, "Welcome to your inbox.", "This is " + "where you can add quick todos.");
 
-// Create 3 todos in project 1
-addNewTodo(0, "low");
-addNewTodo(0, "high");
-addNewTodo(0, "medium");
+// Today project - List of all todos due today
+export let today = createProject("Today");
+updateTodo(1, "Welcome to Today!.", "Todos due " + "today are shown here.");
+
+
+// Project 1
+addNewProject('Project 1');
+addNewTodo(2, "low");
+addNewTodo(2, "high");
+addNewTodo(2, "medium");
+updateTodo(2, "Welcome", "This is your first project todo!");
 
 // Set the current project
 currentProject = projectList[0];
