@@ -100,5 +100,22 @@ addNewTodo(2, "high");
 addNewTodo(2, "medium");
 updateTodo(2, "Welcome", "This is your first project todo!");
 
+// Project 2
+addNewProject('Project 2');
+
+//Project 3
+addNewProject('Project 3');
+
+
 // Set the current project
 currentProject = projectList[0];
+
+export function setCurrentProject(id) {
+  if (id === 0) {
+    currentProject = inbox;
+  } else if (id === 1) {
+    currentProject = today
+  } else {
+    currentProject = projectList[id-2];
+  }
+}
