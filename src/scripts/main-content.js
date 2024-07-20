@@ -10,15 +10,17 @@ function drawMainContent() {
   projectHeader.innerText = "Project Header";
   mainDiv.appendChild(projectHeader);
 
-  const todoListDiv = updateTodoListDiv();
+  const todoListDiv = document.createElement("div");
+  todoListDiv.classList.add("todo-list-div");
   mainDiv.appendChild(todoListDiv);
 
   document.querySelector("#app").appendChild(mainDiv);
+  updateTodoListDiv();
 }
 
 export function updateTodoListDiv() {
-  const todoListDiv = document.createElement("div");
-  todoListDiv.classList.add("todo-list-div");
+  const todoListDiv = document.querySelector(".todo-list-div");
+  todoListDiv.innerHTML = "";
 
   currentProject.todos.forEach(todo => {
     console.log(todo);
@@ -37,8 +39,6 @@ export function updateTodoListDiv() {
     todoItem.append(todoTitle, todoDesc, checkbox);
     todoListDiv.appendChild(todoItem);
   });
-
-  return todoListDiv;
 }
 
 drawMainContent()
