@@ -1,5 +1,6 @@
 // Module import
-import { projectList } from "./todo-manager.js";
+import * as todoManager from "./todo-manager.js";
+import * as mainContHelper from "./main-content.js";
 
 // Icon imports
 import calIcon from "../assets/icons/calendar-today-outline.svg";
@@ -16,7 +17,12 @@ export function drawSideBar() {
 
   const projectListDiv = document.createElement("div");
   projectListDiv.id = "project-list-div";
+  const projectOl = document.createElement("ol");
+  projectOl.classList.add("project-ol");
+  projectListDiv.appendChild(projectOl);
   sidebarOptions.appendChild(projectListDiv);
+
+  // Give icon class to svgs
   for (let i = 0; i < sidebarOptions.childElementCount - 1; i++) {
     sidebarOptions.children[i].children[0].classList.add("icon");
   }
@@ -34,12 +40,18 @@ function drawSidebarOptions() {
   inboxOption.addEventListener("click", (e) => {
     const projectHeader = document.querySelector(".main-content>.project-header");
     projectHeader.innerHTML = "Inbox";
+    todoManager.setCurrentProject(0);
+    updateProjectListDiv();
+    mainContHelper.updateTodoListDiv();
   });
   const todayOption = document.createElement("li");
   todayOption.innerHTML = `${calIcon} <p>Today</p>`;
   todayOption.addEventListener("click", (e) => {
     const projectHeader = document.querySelector(".main-content>.project-header");
     projectHeader.innerHTML = "Today";
+    todoManager.setCurrentProject(1);
+    updateProjectListDiv();
+    mainContHelper.updateTodoListDiv();
   });
   const projectsOption = document.createElement("li");
   projectsOption.innerHTML = `${projectsIcon} <p>Projects</p>${menuUp}`;
@@ -60,19 +72,21 @@ function drawSidebarOptions() {
 
 // Update projectListDiv
 export function updateProjectListDiv() {
-  const orderdedList = document.createElement("ol");
-  for (let i = 0; i < projectList.length; i++) {
+  const orderdedList = document.querySelector(".project-ol");
+  orderdedList.innerHTML = "";
+  todoManager.projectList.forEach(project => {
     const listItem = document.createElement("li");
-    listItem.textContent = projectList[i].name;
+    listItem.textContent = project.name;
     listItem.addEventListener("click", (e) => {
       const projectHeader = document.querySelector(".main-content>.project-header");
-      projectHeader.innerHTML = projectList[i].name;
+      projectHeader.innerHTML = project.name;
+      todoManager.setCurrentProject(project.id);
+      mainContHelper.updateTodoListDiv();
     });
     orderdedList.appendChild(listItem);
-  }
-  const projectListDiv = document.getElementById("project-list-div");
-  projectListDiv.appendChild(orderdedList)
+  });
   // Get height for transitions
+  const projectListDiv = document.getElementById("project-list-div");
   projectListDiv.style.height = projectListDiv.scrollHeight + "px";
 }
 
