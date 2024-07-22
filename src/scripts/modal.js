@@ -1,5 +1,5 @@
 // Module imports
-
+import * as todoManager from "./todo-manager.js";
 // Style imports
 
 export function drawNewTodoModal() {
@@ -32,7 +32,6 @@ export function drawNewTodoModal() {
 
 function createForm() {
   const form = document.createElement("form");
-  form.method = "dialog";
 
   const titleLabel = document.createElement("label");
   titleLabel.classList.add("label");
@@ -61,6 +60,33 @@ function createForm() {
   descInput.setAttribute("required", "");
 
   form.append(descLabel, descInput);
+
+  const projectLabel = document.createElement("label");
+  projectLabel.classList.add("label");
+  projectLabel.setAttribute("for", "project")
+  projectLabel.innerText = "Select Project";
+
+  const projectInput = document.createElement("select");
+  projectInput.setAttribute("id", "project");
+  projectInput.setAttribute("name", "project");
+  const inboxOption = document.createElement("option");
+  inboxOption.value = todoManager.inbox.name;
+  inboxOption.text = todoManager.inbox.name;
+  projectInput.appendChild(inboxOption);
+  const todayOption = document.createElement("option");
+  todayOption.value = todoManager.today.name;
+  todayOption.text = todoManager.today.name;
+  projectInput.appendChild(todayOption);
+
+  todoManager.projectList.forEach(todo => {
+    const option = document.createElement("option");
+    option.value = todo.name;
+    option.innerText = todo.name;
+    projectInput.appendChild(option);
+  })
+
+  form.append(projectLabel, projectInput);
+
 
   const submitButton = document.createElement("input");
   submitButton.setAttribute("type", "submit");
