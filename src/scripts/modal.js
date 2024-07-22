@@ -48,6 +48,20 @@ function createForm() {
 
   form.append(titleLabel, titleInput);
 
+  const descLabel = document.createElement("label");
+  descLabel.classList.add("label");
+  descLabel.setAttribute("for", "desc")
+  descLabel.innerText = "Todo Description";
+
+  const descInput = document.createElement("textarea");
+  descInput.classList.add("form-input");
+  descInput.setAttribute("id", "desc");
+  descInput.setAttribute("name", "desc");
+  descInput.setAttribute("type", "text");
+  descInput.setAttribute("required", "");
+
+  form.append(descLabel, descInput);
+
   return form;
 }
 
