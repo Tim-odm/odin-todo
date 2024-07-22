@@ -87,6 +87,30 @@ function createForm() {
 
   form.append(projectLabel, projectInput);
 
+  const dateLabel = document.createElement("label");
+  dateLabel.classList.add("label");
+  dateLabel.setAttribute("for", "date");
+  dateLabel.innerText = "Due by:";
+
+  const dateInput = document.createElement("input");
+  dateInput.setAttribute("type", "date");
+  dateInput.setAttribute("id", "date");
+  dateInput.setAttribute("name", "date");
+
+  form.append(dateLabel, dateInput)
+
+  const timeLabel = document.createElement("label");
+  timeLabel.classList.add("label");
+  timeLabel.setAttribute("for", "time");
+  timeLabel.innerText = "Time:";
+
+  const timeInput = document.createElement("input");
+  timeInput.setAttribute("type", "time");
+  timeInput.setAttribute("id", "time");
+  timeInput.setAttribute("name", "time");
+
+  form.append(timeLabel, timeInput);
+
 
   const submitButton = document.createElement("input");
   submitButton.setAttribute("type", "submit");
