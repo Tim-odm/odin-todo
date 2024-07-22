@@ -27,6 +27,7 @@ export function drawNewTodoModal() {
   });
 
   document.querySelector("#app").append(openButton, newtodoModalDiv);
+  newtodoModalDiv.showModal();
 }
 
 function createForm() {
@@ -41,6 +42,9 @@ function createForm() {
   const titleInput = document.createElement("input");
   titleInput.classList.add("form-input");
   titleInput.setAttribute("id", "title");
+  titleInput.setAttribute("name", "title");
+  titleInput.setAttribute("type", "text");
+  titleInput.setAttribute("required", "");
 
   form.append(titleLabel, titleInput);
 
