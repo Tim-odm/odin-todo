@@ -1,7 +1,8 @@
 // Module exports
-import * as headerHelper from "./header";
-import * as sidebar from "./sidebar.js";
-import * as main from "./main-content.js";
+// import * as headerHelper from "./header.js";
+// import * as sidebar from "./sidebar.js";
+// import * as main from "./main-content.js";
+import * as modal from "./modal.js"
 
 // CSS imports
 import "../styles/modern-normalise.css";
@@ -13,9 +14,4 @@ import "../styles/main-content.css";
 
 const app = document.querySelector("#app");
 
-function draw() {
-  
-}
-
-sidebar.updateProjectListDiv();
-draw();
+// sidebar.updateProjectListDiv();
