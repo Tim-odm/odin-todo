@@ -62,6 +62,12 @@ function createForm() {
 
   form.append(descLabel, descInput);
 
+  const submitButton = document.createElement("input");
+  submitButton.setAttribute("type", "submit");
+  submitButton.value = "Submit";
+
+  form.appendChild(submitButton);
+
   return form;
 }
 

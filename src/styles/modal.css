@@ -1,4 +1,9 @@
 .new-todo-modal {
+  /* display: flex;
+  flex-direction: column; */
+}
+
+form {
   display: flex;
   flex-direction: column;
 }
