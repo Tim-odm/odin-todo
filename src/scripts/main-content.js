@@ -7,7 +7,7 @@ function drawMainContent() {
 
   const projectHeader = document.createElement("h3");
   projectHeader.classList.add("project-header");
-  projectHeader.innerText = "Project Header";
+  projectHeader.innerText = currentProject.name;
   mainDiv.appendChild(projectHeader);
 
   const todoListDiv = document.createElement("div");
