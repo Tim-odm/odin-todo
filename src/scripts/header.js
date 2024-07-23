@@ -1,3 +1,6 @@
+// Module imports
+import * as modal from "./modal.js";
+
 // Icon imports
 import menuIcon from "../assets/icons/menu.svg";
 import homeIcon from "../assets/icons/home-outline.svg";
@@ -17,6 +20,10 @@ export function drawHeader() {
   for (let i = 0; i < headerLeftSideDiv.childElementCount; i++) {
     headerLeftSideDiv.children[i].classList.add("icon");
   }
+
+  headerLeftSideDiv.children[2].addEventListener("click", (e) => {
+    modal.drawNewTodoModal();
+  })
 
   document.querySelector("#app").appendChild(domHeader);
 }

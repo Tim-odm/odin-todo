@@ -1,34 +1,27 @@
 // Module imports
 import * as todoManager from "./todo-manager.js";
-// Style imports
+
+const newtodoModalDiv = document.createElement("dialog");
+newtodoModalDiv.classList.add("new-todo-modal");
+document.querySelector("#app").append(newtodoModalDiv);
 
 export function drawNewTodoModal() {
-  const newtodoModalDiv = document.createElement("dialog");
-  newtodoModalDiv.classList.add("new-todo-modal");
-
+  newtodoModalDiv.innerHTML = "";
+  
   const header = document.createElement("h2");
   header.innerText = "New Todo";
   newtodoModalDiv.appendChild(header);
 
-  newtodoModalDiv.appendChild(createForm())
+  newtodoModalDiv.appendChild(createForm());
 
   const closeButton = document.createElement("button");
   closeButton.innerText = "Close";
   closeButton.addEventListener("click", (e) => {
-    document.querySelector("#new-todo-form").reset();
+    newtodoModalDiv.innerHTML = "";
     newtodoModalDiv.close();
   });
   newtodoModalDiv.appendChild(closeButton);
 
-
-  const openButton = document.createElement("button");
-  openButton.innerText = "Open";
-  openButton.addEventListener("click", (e) => {
-    document.querySelector("#new-todo-form").reset();
-    newtodoModalDiv.showModal();
-  });
-
-  document.querySelector("#app").append(openButton, newtodoModalDiv);
   newtodoModalDiv.showModal();
 }
 
@@ -73,10 +66,13 @@ function createForm() {
   const projectInput = document.createElement("select");
   projectInput.setAttribute("id", "project");
   projectInput.setAttribute("name", "project");
+  descInput.setAttribute("required", "");
+
   const inboxOption = document.createElement("option");
   inboxOption.value = todoManager.inbox.name;
   inboxOption.text = todoManager.inbox.name;
   projectInput.appendChild(inboxOption);
+
   const todayOption = document.createElement("option");
   todayOption.value = todoManager.today.name;
   todayOption.text = todoManager.today.name;
@@ -100,6 +96,10 @@ function createForm() {
   dateInput.setAttribute("type", "date");
   dateInput.setAttribute("id", "date");
   dateInput.setAttribute("name", "date");
+  descInput.setAttribute("required", "");
+  const date = new Date().toISOString().substring(0, 10);
+  console.log(date);
+  dateInput.value = date;
 
   form.append(dateLabel, dateInput)
 
@@ -112,9 +112,10 @@ function createForm() {
   timeInput.setAttribute("type", "time");
   timeInput.setAttribute("id", "time");
   timeInput.setAttribute("name", "time");
+  timeInput.setAttribute("required", "");
+  timeInput.value = "09:00";
 
   form.append(timeLabel, timeInput);
-
 
   const submitButton = document.createElement("input");
   submitButton.setAttribute("type", "submit");
@@ -124,5 +125,3 @@ function createForm() {
 
   return form;
 }
-
-drawNewTodoModal();
