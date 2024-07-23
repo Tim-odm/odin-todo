@@ -7,20 +7,12 @@ document.querySelector("#app").append(newtodoModalDiv);
 
 export function drawNewTodoModal() {
   newtodoModalDiv.innerHTML = "";
-  
+
   const header = document.createElement("h2");
   header.innerText = "New Todo";
   newtodoModalDiv.appendChild(header);
 
-  newtodoModalDiv.appendChild(createForm());
-
-  const closeButton = document.createElement("button");
-  closeButton.innerText = "Close";
-  closeButton.addEventListener("click", (e) => {
-    newtodoModalDiv.innerHTML = "";
-    newtodoModalDiv.close();
-  });
-  newtodoModalDiv.appendChild(closeButton);
+  createForm();
 
   newtodoModalDiv.showModal();
 }
@@ -63,27 +55,7 @@ function createForm() {
   projectLabel.setAttribute("for", "project")
   projectLabel.innerText = "Select Project";
 
-  const projectInput = document.createElement("select");
-  projectInput.setAttribute("id", "project");
-  projectInput.setAttribute("name", "project");
-  descInput.setAttribute("required", "");
-
-  const inboxOption = document.createElement("option");
-  inboxOption.value = todoManager.inbox.name;
-  inboxOption.text = todoManager.inbox.name;
-  projectInput.appendChild(inboxOption);
-
-  const todayOption = document.createElement("option");
-  todayOption.value = todoManager.today.name;
-  todayOption.text = todoManager.today.name;
-  projectInput.appendChild(todayOption);
-
-  todoManager.projectList.forEach(todo => {
-    const option = document.createElement("option");
-    option.value = todo.name;
-    option.innerText = todo.name;
-    projectInput.appendChild(option);
-  })
+  const projectInput = createProjectOptions();
 
   form.append(projectLabel, projectInput);
 
@@ -117,11 +89,58 @@ function createForm() {
 
   form.append(timeLabel, timeInput);
 
-  const submitButton = document.createElement("input");
-  submitButton.setAttribute("type", "submit");
-  submitButton.value = "Submit";
+  const buttonDiv = document.createElement("div");
 
-  form.appendChild(submitButton);
+  const submitButton = document.createElement("button");
+  submitButton.innerText = "Submit";
+  submitButton.addEventListener("click", (e) => {
+    newtodoModalDiv.innerHTML = "";
+    newtodoModalDiv.close();
+  });
 
-  return form;
+  const closeButton = document.createElement("button");
+  closeButton.innerText = "Close";
+  closeButton.addEventListener("click", (e) => {
+    newtodoModalDiv.innerHTML = "";
+    newtodoModalDiv.close();
+  });
+  buttonDiv.append(submitButton, closeButton);
+
+  newtodoModalDiv.appendChild(form);
+
+  newtodoModalDiv.appendChild(buttonDiv);
+}
+
+function createProjectOptions() {
+  const projectInput = document.createElement("select");
+  projectInput.setAttribute("id", "project");
+  projectInput.setAttribute("name", "project");
+  projectInput.setAttribute("required", "");
+  projectInput.value = todoManager.currentProject.name;
+
+  const defaultOption = document.createElement("option");
+  defaultOption.value = "";
+  defaultOption.text = "Select a Project";
+  defaultOption.setAttribute("disabled", "");
+  defaultOption.setAttribute("selected", "");
+  projectInput.appendChild(defaultOption);
+
+  const inboxOption = document.createElement("option");
+  inboxOption.value = todoManager.inbox.name;
+  inboxOption.text = todoManager.inbox.name;
+  projectInput.appendChild(inboxOption);
+
+  const todayOption = document.createElement("option");
+  todayOption.value = todoManager.today.name;
+  todayOption.text = todoManager.today.name;
+  projectInput.appendChild(todayOption);
+
+  todoManager.projectList.forEach(todo => {
+    const option = document.createElement("option");
+    option.value = todo.name;
+    option.innerText = todo.name;
+    projectInput.appendChild(option);
+  });
+
+  return projectInput;
 }
