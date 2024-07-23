@@ -15,6 +15,7 @@ export function drawNewTodoModal() {
   const closeButton = document.createElement("button");
   closeButton.innerText = "Close";
   closeButton.addEventListener("click", (e) => {
+    document.querySelector("#new-todo-form").reset();
     newtodoModalDiv.close();
   });
   newtodoModalDiv.appendChild(closeButton);
@@ -23,6 +24,7 @@ export function drawNewTodoModal() {
   const openButton = document.createElement("button");
   openButton.innerText = "Open";
   openButton.addEventListener("click", (e) => {
+    document.querySelector("#new-todo-form").reset();
     newtodoModalDiv.showModal();
   });
 
@@ -32,6 +34,8 @@ export function drawNewTodoModal() {
 
 function createForm() {
   const form = document.createElement("form");
+  form.id = "new-todo-form";
+  form.method = "dialog";
 
   const titleLabel = document.createElement("label");
   titleLabel.classList.add("label");
