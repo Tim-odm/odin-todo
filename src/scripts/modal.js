@@ -126,18 +126,18 @@ function createProjectOptions() {
   projectInput.appendChild(defaultOption);
 
   const inboxOption = document.createElement("option");
-  inboxOption.value = todoManager.inbox.name;
+  inboxOption.value = todoManager.inbox.id;
   inboxOption.text = todoManager.inbox.name;
   projectInput.appendChild(inboxOption);
 
   const todayOption = document.createElement("option");
-  todayOption.value = todoManager.today.name;
+  todayOption.value = todoManager.today.id;
   todayOption.text = todoManager.today.name;
   projectInput.appendChild(todayOption);
 
   todoManager.projectList.forEach(todo => {
     const option = document.createElement("option");
-    option.value = todo.name;
+    option.value = todo.id;
     option.innerText = todo.name;
     projectInput.appendChild(option);
   });
