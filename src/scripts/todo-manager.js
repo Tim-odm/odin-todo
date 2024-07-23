@@ -30,9 +30,16 @@ function createTodo(title , description, priority) {
 }
 
 // Function to add a todo to the list
-export function addNewTodo(projectId, priority) {
-  const project = projectList.find(project => project.id === projectId);
-  const newTodo = createTodo("New Todo", "Add description", priority);
+export function addNewTodo(projectId, title, desc, priority) {
+  let project;
+  if (projectId === 0) {
+    project = inbox;
+  } else if (projectId === 1) {
+    project = today
+  } else {
+    project = projectList.find(project => project.id === projectId);
+  }
+  const newTodo = createTodo(title, desc, priority);
   project.todos.push(newTodo);
   todosList.push(newTodo);
 }
@@ -91,7 +98,6 @@ updateTodo(0, "Welcome to your inbox.", "This is " + "where you can add quick to
 // Today project - List of all todos due today
 export let today = createProject("Today");
 updateTodo(1, "Welcome to Today!.", "Todos due " + "today are shown here.");
-
 
 // Project 1
 addNewProject('Project 1');
