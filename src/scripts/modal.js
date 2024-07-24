@@ -94,6 +94,8 @@ function createForm() {
   const submitButton = document.createElement("button");
   submitButton.innerText = "Submit";
   submitButton.addEventListener("click", (e) => {
+    console.log(projectInput.value);
+    todoManager.addNewTodo(Number(projectInput.value), titleInput.value, descInput.value, "low");
     newtodoModalDiv.innerHTML = "";
     newtodoModalDiv.close();
   });

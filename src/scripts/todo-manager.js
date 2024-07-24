@@ -13,7 +13,7 @@ function createProject(name) {
   return {
     id: id,
     name,
-    todos: [defualtTodo],
+    todos: [defualtTodo]
   };
 }
 
@@ -25,17 +25,17 @@ function createTodo(title , description, priority) {
     title,
     description,
     priority,
-    completed: false,
+    completed: false
   };
 }
 
 // Function to add a todo to the list
 export function addNewTodo(projectId, title, desc, priority) {
   let project;
-  if (projectId === 0) {
+  if (projectId == 0) {
     project = inbox;
-  } else if (projectId === 1) {
-    project = today
+  } else if (projectId == 1) {
+    project = today;
   } else {
     project = projectList.find(project => project.id === projectId);
   }
@@ -101,17 +101,13 @@ updateTodo(1, "Welcome to Today!.", "Todos due " + "today are shown here.");
 
 // Project 1
 addNewProject('Project 1');
-addNewTodo(2, "low");
-addNewTodo(2, "high");
-addNewTodo(2, "medium");
-updateTodo(2, "Welcome", "This is your first project todo!");
+addNewTodo(2, "Welcome", "This is your first project todo!", "low");
 
 // Project 2
 addNewProject('Project 2');
 
 //Project 3
 addNewProject('Project 3');
-
 
 // Set the current project
 currentProject = projectList[0];
