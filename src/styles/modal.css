@@ -1,9 +1,40 @@
 .new-todo-modal {
-  /* display: flex;
-  flex-direction: column; */
+  width: 500px;
 }
 
 form {
   display: flex;
   flex-direction: column;
+  /* gap: 8px; */
+}
+
+fieldset {
+  border: none;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 8px 0;
+}
+
+#desc {
+  height: 100px;
+}
+
+#project {
+  width: 150px; 
+}
+
+.date-time-div {
+  display: flex;
+  gap: 40px;
+}
+
+.date-time-div > div {
+  display: flex;
+  flex-direction: column;
+}
+
+.new-todo-button-div {
+  display: flex;
+  justify-content: space-between;
 }

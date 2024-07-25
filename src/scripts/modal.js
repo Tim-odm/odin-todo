@@ -22,6 +22,12 @@ function createForm() {
   form.id = "new-todo-form";
   form.method = "dialog";
 
+  const fieldsetList = [];
+
+  for(let x = 0; x < 4; x++) {
+    fieldsetList.push(document.createElement("fieldset"));
+  }
+
   const titleLabel = document.createElement("label");
   titleLabel.classList.add("label");
   titleLabel.setAttribute("for", "title")
@@ -34,7 +40,7 @@ function createForm() {
   titleInput.setAttribute("type", "text");
   titleInput.setAttribute("required", "");
 
-  form.append(titleLabel, titleInput);
+  fieldsetList[0].append(titleLabel, titleInput);
 
   const descLabel = document.createElement("label");
   descLabel.classList.add("label");
@@ -48,7 +54,7 @@ function createForm() {
   descInput.setAttribute("type", "text");
   descInput.setAttribute("required", "");
 
-  form.append(descLabel, descInput);
+  fieldsetList[1].append(descLabel, descInput);
 
   const projectLabel = document.createElement("label");
   projectLabel.classList.add("label");
@@ -57,7 +63,13 @@ function createForm() {
 
   const projectInput = createProjectOptions();
 
-  form.append(projectLabel, projectInput);
+  fieldsetList[2].append(projectLabel, projectInput);
+
+  const dateTimeDiv = document.createElement("div");
+  dateTimeDiv.classList.add("date-time-div");
+
+  const dateDiv = document.createElement("div");
+  dateDiv.classList.add("date-div");
 
   const dateLabel = document.createElement("label");
   dateLabel.classList.add("label");
@@ -73,7 +85,10 @@ function createForm() {
   console.log(date);
   dateInput.value = date;
 
-  form.append(dateLabel, dateInput)
+  dateDiv.append(dateLabel, dateInput)
+
+  const timeDiv = document.createElement("div");
+  timeDiv.classList.add("time-div");
 
   const timeLabel = document.createElement("label");
   timeLabel.classList.add("label");
@@ -87,9 +102,16 @@ function createForm() {
   timeInput.setAttribute("required", "");
   timeInput.value = "09:00";
 
-  form.append(timeLabel, timeInput);
+  timeDiv.append(timeLabel, timeInput);
+  dateTimeDiv.append(dateDiv, timeDiv);
+  fieldsetList[3].appendChild(dateTimeDiv);
+
+  fieldsetList.forEach(set => {
+    form.appendChild(set);
+  });
 
   const buttonDiv = document.createElement("div");
+  buttonDiv.classList.add("new-todo-button-div");
 
   const submitButton = document.createElement("button");
   submitButton.innerText = "Submit";
