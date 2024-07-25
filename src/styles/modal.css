@@ -16,6 +16,10 @@ fieldset {
   padding: 8px 0;
 }
 
+fieldset label {
+  font-weight: 500;
+}
+
 #desc {
   height: 100px;
 }
@@ -37,4 +41,19 @@ fieldset {
 .new-todo-button-div {
   display: flex;
   justify-content: space-between;
+  margin-top: 4px;
+}
+
+.new-todo-button-div > button {
+  background-color: var(--header-bg-color);
+  border: none;
+  border-radius: 16px;
+  font-weight: 500;
+  padding: 8px;
+  width: 92px;
+  transition: .2s ease-in;
+}
+
+.new-todo-button-div > button:hover {
+  box-shadow: 0 0 4px rgba(0, 0, 0, .2);
 }
