@@ -51,7 +51,7 @@ fieldset label {
   font-weight: 500;
   padding: 8px;
   width: 92px;
-  transition: .2s ease-in;
+  transition: .1s ease-in;
 }
 
 .new-todo-button-div > button:hover {

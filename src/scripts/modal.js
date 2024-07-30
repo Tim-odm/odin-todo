@@ -115,7 +115,7 @@ function createForm() {
 
   const submitButton = document.createElement("button");
   submitButton.innerText = "Submit";
-  submitButton.addEventListener("click", (e) => {
+  submitButton.addEventListener("click", () => {
     console.log(projectInput.value);
     todoManager.addNewTodo(Number(projectInput.value), titleInput.value, descInput.value, "low");
     newtodoModalDiv.innerHTML = "";
@@ -124,7 +124,7 @@ function createForm() {
 
   const closeButton = document.createElement("button");
   closeButton.innerText = "Close";
-  closeButton.addEventListener("click", (e) => {
+  closeButton.addEventListener("click", () => {
     newtodoModalDiv.innerHTML = "";
     newtodoModalDiv.close();
   });
