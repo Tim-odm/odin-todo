@@ -82,7 +82,7 @@ function createForm() {
   dateInput.setAttribute("name", "date");
   descInput.setAttribute("required", "");
   const date = new Date().toISOString().substring(0, 10);
-  console.log(date);
+  // console.log(date);
   dateInput.value = date;
 
   dateDiv.append(dateLabel, dateInput)
