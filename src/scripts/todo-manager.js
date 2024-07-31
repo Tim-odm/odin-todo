@@ -17,6 +17,39 @@ function createProject(name) {
   };
 }
 
+// Function to add a project to the list
+export function addNewProject(name) {
+  projectList.push(createProject(name));
+}
+
+// Function to update a project name
+export function updateProjectName(projectId, name) {
+  const project = projectList.find(project => project.id === projectId);
+  project.name = name;
+}
+
+// Delete a project
+export function deleteProject(id) {
+  const project = projectList.find(project => project.id === id);
+  const projectIndex = projectList.indexOf(project);
+  projectList.splice(projectIndex, 1);
+  project.todos.forEach(todo => {
+    const todoIndex = todosList.indexOf(todo);
+    todosList.splice(todoIndex, 1);
+  });
+}
+
+// Set the current project
+export function setCurrentProject(id) {
+  if (id === 0) {
+    currentProject = inbox;
+  } else if (id === 1) {
+    currentProject = today
+  } else {
+    currentProject = projectList[id-2];
+  }
+}
+
 // Factory function for a todo
 function createTodo(title , description, priority) {
   const id = todoCount++;
@@ -29,7 +62,7 @@ function createTodo(title , description, priority) {
   };
 }
 
-// Function to add a todo to the list
+// Function to add a todo to a project
 export function addNewTodo(projectId, title, desc, priority) {
   let project;
   if (projectId == 0) {
@@ -44,33 +77,12 @@ export function addNewTodo(projectId, title, desc, priority) {
   todosList.push(newTodo);
 }
 
-// Function to add a project to the list
-export function addNewProject(name) {
-  projectList.push(createProject(name));
-}
-
-// Function to update a project name
-export function updateProjectName(projectId, name) {
-  const project = projectList.find(project => project.id === projectId);
-  project.name = name;
-}
-
 // Funtion to update a todo
-export function updateTodo(id, title, description) {
+export function updateTodo(id, title, description, priority) {
   const todo = todosList.find(todo => todo.id === id);
   todo.title = title;
   todo.description = description;
-}
-
-// Delete a project
-export function deleteProject(id) {
-  const project = projectList.find(project => project.id === id);
-  const projectIndex = projectList.indexOf(project);
-  projectList.splice(projectIndex, 1);
-  project.todos.forEach(todo => {
-    const todoIndex = todosList.indexOf(todo);
-    todosList.splice(todoIndex, 1);
-  });
+  todo.priority = priority;
 }
 
 // Function to delete a todo
@@ -111,13 +123,3 @@ addNewProject('Project 3');
 
 // Set the current project
 currentProject = projectList[0];
-
-export function setCurrentProject(id) {
-  if (id === 0) {
-    currentProject = inbox;
-  } else if (id === 1) {
-    currentProject = today
-  } else {
-    currentProject = projectList[id-2];
-  }
-}
