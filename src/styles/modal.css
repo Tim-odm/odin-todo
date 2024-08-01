@@ -28,6 +28,12 @@ fieldset label {
   width: 150px; 
 }
 
+.priority-radio-div {
+  display: flex;
+  justify-content: space-around;
+  padding: 12px 0;
+}
+
 .date-time-div {
   display: flex;
   gap: 40px;

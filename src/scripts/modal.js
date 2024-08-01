@@ -1,5 +1,6 @@
 // Module imports
 import * as todoManager from "./todo-manager.js";
+import * as mainContent from "./main-content.js";
 
 const newtodoModalDiv = document.createElement("dialog");
 newtodoModalDiv.classList.add("new-todo-modal");
@@ -24,7 +25,7 @@ function createForm() {
 
   const fieldsetList = [];
 
-  for(let x = 0; x < 4; x++) {
+  for(let x = 0; x < 5; x++) {
     fieldsetList.push(document.createElement("fieldset"));
   }
 
@@ -56,6 +57,48 @@ function createForm() {
 
   fieldsetList[1].append(descLabel, descInput);
 
+  const priorityLabel = document.createElement("label");
+  priorityLabel.classList.add("label");
+  priorityLabel.setAttribute("for", "priority")
+  priorityLabel.innerText = "Priority";
+
+  const radioDiv = document.createElement("div");
+  radioDiv.classList.add("priority-radio-div");
+
+  const priorityInputs = [];
+  const priorityLabels = [];
+  const priorityDivs = [];
+  for (let x = 0; x < 3; x++) {
+   priorityInputs.push(document.createElement("input"));
+   priorityInputs[x].setAttribute("type", "radio");
+   priorityInputs[x].setAttribute("name", "priority");
+   priorityInputs[x].classList.add("priority-input"); 
+   priorityLabels.push(document.createElement("label"));
+   priorityDivs.push(document.createElement("div"));
+  }
+
+  priorityInputs[0].id = "high";
+  priorityInputs[0].value = "high";
+  priorityLabels[0].innerText = "High";
+  priorityLabels[0].setAttribute("for", "high")
+  priorityDivs[0].append(priorityInputs[0], priorityLabels[0]);
+
+  priorityInputs[1].id = "medium";
+  priorityInputs[1].value = "medium";
+  priorityLabels[1].innerText = "Medium";
+  priorityLabels[1].setAttribute("for", "medium")
+  priorityDivs[1].append(priorityInputs[1], priorityLabels[1]);
+
+  priorityInputs[2].id = "low";
+  priorityInputs[2].value = "low";
+  priorityLabels[2].innerText = "Low";
+  priorityLabels[2].setAttribute("for", "low")
+  priorityDivs[2].append(priorityInputs[2], priorityLabels[2]);
+
+  radioDiv.append(priorityDivs[0], priorityDivs[1], priorityDivs[2])
+
+  fieldsetList[2].append(priorityLabel, radioDiv);
+
   const projectLabel = document.createElement("label");
   projectLabel.classList.add("label");
   projectLabel.setAttribute("for", "project")
@@ -63,7 +106,7 @@ function createForm() {
 
   const projectInput = createProjectOptions();
 
-  fieldsetList[2].append(projectLabel, projectInput);
+  fieldsetList[3].append(projectLabel, projectInput);
 
   const dateTimeDiv = document.createElement("div");
   dateTimeDiv.classList.add("date-time-div");
@@ -104,7 +147,7 @@ function createForm() {
 
   timeDiv.append(timeLabel, timeInput);
   dateTimeDiv.append(dateDiv, timeDiv);
-  fieldsetList[3].appendChild(dateTimeDiv);
+  fieldsetList[4].appendChild(dateTimeDiv);
 
   fieldsetList.forEach(set => {
     form.appendChild(set);
@@ -117,7 +160,9 @@ function createForm() {
   submitButton.innerText = "Submit";
   submitButton.addEventListener("click", () => {
     console.log(projectInput.value);
-    todoManager.addNewTodo(Number(projectInput.value), titleInput.value, descInput.value, "low");
+    const priority = document.querySelector(".priority-input:checked").value;
+    todoManager.addNewTodo(Number(projectInput.value), titleInput.value, descInput.value, priority);
+    mainContent.updateTodoListDiv();
     newtodoModalDiv.innerHTML = "";
     newtodoModalDiv.close();
   });
