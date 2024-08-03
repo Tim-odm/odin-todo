@@ -77,7 +77,7 @@ export function updateProjectListDiv() {
   todoManager.projectList.forEach(project => {
     const listItem = document.createElement("li");
     listItem.textContent = project.name;
-    listItem.addEventListener("click", (e) => {
+    listItem.addEventListener("click", () => {
       const projectHeader = document.querySelector(".main-content>.project-header");
       projectHeader.innerHTML = project.name;
       todoManager.setCurrentProject(project.id);
@@ -85,6 +85,14 @@ export function updateProjectListDiv() {
     });
     orderdedList.appendChild(listItem);
   });
+  // Add project option
+  const listItem = document.createElement("li");
+  listItem.textContent = "Add Project";
+  listItem.addEventListener("click", () => {
+    // Add new project modal opens here
+  });
+  orderdedList.appendChild(listItem);
+
   // Get height for transitions
   const projectListDiv = document.getElementById("project-list-div");
   projectListDiv.style.height = projectListDiv.scrollHeight + "px";
