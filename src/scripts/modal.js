@@ -6,8 +6,11 @@ import * as mainContent from "./main-content.js";
 import closeIcon from "../assets/icons/close.svg";
 
 const newtodoModalDiv = document.createElement("dialog");
-const newProjectModal  = document.createElement("dialog");
 newtodoModalDiv.classList.add("new-todo-modal");
+
+const newProjectModal  = document.createElement("dialog");
+newProjectModal.classList.add("new-project-modal");
+
 document.querySelector("#app").append(newtodoModalDiv);
 document.querySelector("#app").append(newProjectModal);
 

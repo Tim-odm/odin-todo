@@ -2,6 +2,12 @@
   width: 500px;
 }
 
+.new-project-modal {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 300px;
+}
 form {
   display: flex;
   flex-direction: column;
