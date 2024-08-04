@@ -16,4 +16,4 @@ import "../styles/modal.css";
 const app = document.querySelector("#app");
 
 sidebar.updateProjectListDiv();
-modal.drawNewTodoModal();
+modal.drawNewProjectModal();

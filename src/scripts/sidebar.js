@@ -1,6 +1,7 @@
 // Module import
 import * as todoManager from "./todo-manager.js";
 import * as mainContHelper from "./main-content.js";
+import * as modal from "./modal.js";
 
 // Icon imports
 import calIcon from "../assets/icons/calendar-today-outline.svg";
@@ -90,6 +91,7 @@ export function updateProjectListDiv() {
   listItem.textContent = "Add Project";
   listItem.addEventListener("click", () => {
     // Add new project modal opens here
+    modal.drawNewProjectModal();
   });
   orderdedList.appendChild(listItem);
 

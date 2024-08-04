@@ -2,9 +2,14 @@
 import * as todoManager from "./todo-manager.js";
 import * as mainContent from "./main-content.js";
 
+// Icon imports
+import closeIcon from "../assets/icons/close.svg";
+
 const newtodoModalDiv = document.createElement("dialog");
+const newProjectModal  = document.createElement("dialog");
 newtodoModalDiv.classList.add("new-todo-modal");
 document.querySelector("#app").append(newtodoModalDiv);
+document.querySelector("#app").append(newProjectModal);
 
 export function drawNewTodoModal() {
   newtodoModalDiv.innerHTML = "";
@@ -13,12 +18,12 @@ export function drawNewTodoModal() {
   header.innerText = "New Todo";
   newtodoModalDiv.appendChild(header);
 
-  createForm();
+  createNewTodoForm();
 
   newtodoModalDiv.showModal();
 }
 
-function createForm() {
+function createNewTodoForm() {
   const form = document.createElement("form");
   form.id = "new-todo-form";
   form.method = "dialog";
@@ -153,27 +158,7 @@ function createForm() {
     form.appendChild(set);
   });
 
-  const buttonDiv = document.createElement("div");
-  buttonDiv.classList.add("new-todo-button-div");
-
-  const submitButton = document.createElement("button");
-  submitButton.innerText = "Submit";
-  submitButton.addEventListener("click", () => {
-    console.log(projectInput.value);
-    const priority = document.querySelector(".priority-input:checked").value;
-    todoManager.addNewTodo(Number(projectInput.value), titleInput.value, descInput.value, priority);
-    mainContent.updateTodoListDiv();
-    newtodoModalDiv.innerHTML = "";
-    newtodoModalDiv.close();
-  });
-
-  const closeButton = document.createElement("button");
-  closeButton.innerText = "Close";
-  closeButton.addEventListener("click", () => {
-    newtodoModalDiv.innerHTML = "";
-    newtodoModalDiv.close();
-  });
-  buttonDiv.append(submitButton, closeButton);
+  const buttonDiv = createButtonDiv(newtodoModalDiv, true);
 
   newtodoModalDiv.appendChild(form);
 
@@ -212,4 +197,64 @@ function createProjectOptions() {
   });
 
   return projectInput;
+}
+
+function createButtonDiv(modal, isTodoForm) {
+
+  const buttonDiv = document.createElement("div");
+  buttonDiv.classList.add("new-todo-button-div");
+
+  const submitButton = document.createElement("button");
+  submitButton.innerText = "Submit";
+  submitButton.addEventListener("click", () => {
+    if (isTodoForm) {
+      const priority = document.querySelector(".priority-input:checked").value;
+      const projectId = Number(document.getElementById("project").value);
+      const title = document.getElementById("id").value;
+      const desc = document.getElementById("desc").value;
+      todoManager.addNewTodo(projectId, title, desc, priority);
+      mainContent.updateTodoListDiv();
+    }
+    modal.innerHTML = "";
+    modal.close();
+  });
+
+  const closeButton = document.createElement("button");
+  closeButton.innerText = "Close";
+  closeButton.addEventListener("click", () => {
+    modal.innerHTML = "";
+    modal.close();
+  });
+  buttonDiv.append(submitButton, closeButton);
+
+  return buttonDiv;
+}
+
+export function drawNewProjectModal() {
+  newProjectModal.innerHTML = "";
+
+  createNewProjectForm();
+
+  newProjectModal.showModal();
+}
+
+function createNewProjectForm() {
+  const modalHeader = document.createElement("div");
+  modalHeader.classList.add("new-project-modal-header");
+  
+  modalHeader.innerHTML = `<h3>New Project</h3>${closeIcon}`;
+  modalHeader.children[1].classList.add("icon");
+  modalHeader.children[1].addEventListener("click", () => {
+    newProjectModal.close();
+  })
+  newProjectModal.appendChild(modalHeader);
+
+  const projectNameInput = document.createElement("input");
+  projectNameInput.setAttribute("id", "project-name");
+  projectNameInput.setAttribute("name", "project-name");
+  projectNameInput.setAttribute("type", "text");
+  newProjectModal.appendChild(projectNameInput);
+  
+  const buttonDiv = createButtonDiv(newProjectModal, false);
+  newProjectModal.appendChild(buttonDiv);
 }

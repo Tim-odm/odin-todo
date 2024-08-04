@@ -63,3 +63,9 @@ fieldset label {
 .new-todo-button-div > button:hover {
   box-shadow: 0 0 4px rgba(0, 0, 0, .2);
 }
+
+.new-project-modal-header {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+}
