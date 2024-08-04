@@ -1,6 +1,7 @@
 // Module imports
 import * as todoManager from "./todo-manager.js";
 import * as mainContent from "./main-content.js";
+import * as sidebar from "./sidebar.js";
 
 // Icon imports
 import closeIcon from "../assets/icons/close.svg";
@@ -217,6 +218,10 @@ function createButtonDiv(modal, isTodoForm) {
       const desc = document.getElementById("desc").value;
       todoManager.addNewTodo(projectId, title, desc, priority);
       mainContent.updateTodoListDiv();
+    } else {
+      const projectName = document.getElementById("project-name").value;
+      todoManager.addNewProject(projectName);
+      sidebar.updateProjectListDiv();
     }
     modal.innerHTML = "";
     modal.close();
@@ -242,6 +247,9 @@ export function drawNewProjectModal() {
 }
 
 function createNewProjectForm() {
+  const wrapper = document.createElement("div");
+  wrapper.classList.add("project-modal-wrapper");
+
   const modalHeader = document.createElement("div");
   modalHeader.classList.add("new-project-modal-header");
   
@@ -250,14 +258,16 @@ function createNewProjectForm() {
   modalHeader.children[1].addEventListener("click", () => {
     newProjectModal.close();
   })
-  newProjectModal.appendChild(modalHeader);
+  wrapper.appendChild(modalHeader);
 
   const projectNameInput = document.createElement("input");
   projectNameInput.setAttribute("id", "project-name");
   projectNameInput.setAttribute("name", "project-name");
   projectNameInput.setAttribute("type", "text");
-  newProjectModal.appendChild(projectNameInput);
+  wrapper.appendChild(projectNameInput);
   
   const buttonDiv = createButtonDiv(newProjectModal, false);
-  newProjectModal.appendChild(buttonDiv);
+  wrapper.appendChild(buttonDiv);
+
+  newProjectModal.appendChild(wrapper);
 }
