@@ -11,7 +11,7 @@ function createProject(name) {
   return {
     id: id,
     name,
-    todos: []
+    todos: [],
   };
 }
 
@@ -22,16 +22,16 @@ export function addNewProject(name) {
 
 // Function to update a project name
 export function updateProjectName(projectId, name) {
-  const project = projectList.find(project => project.id === projectId);
+  const project = projectList.find((project) => project.id === projectId);
   project.name = name;
 }
 
 // Delete a project
 export function deleteProject(id) {
-  const project = projectList.find(project => project.id === id);
+  const project = projectList.find((project) => project.id === id);
   const projectIndex = projectList.indexOf(project);
   projectList.splice(projectIndex, 1);
-  project.todos.forEach(todo => {
+  project.todos.forEach((todo) => {
     const todoIndex = todosList.indexOf(todo);
     todosList.splice(todoIndex, 1);
   });
@@ -42,21 +42,21 @@ export function setCurrentProject(id) {
   if (id === 0) {
     currentProject = inbox;
   } else if (id === 1) {
-    currentProject = today
+    currentProject = today;
   } else {
-    currentProject = projectList[id-2];
+    currentProject = projectList[id - 2];
   }
 }
 
 // Factory function for a todo
-function createTodo(title , description, priority) {
+function createTodo(title, description, priority) {
   const id = todoCount++;
   return {
     id: id,
     title,
     description,
     priority,
-    completed: false
+    completed: false,
   };
 }
 
@@ -68,7 +68,7 @@ export function addNewTodo(projectId, title, desc, priority) {
   } else if (projectId == 1) {
     project = today;
   } else {
-    project = projectList.find(project => project.id === projectId);
+    project = projectList.find((project) => project.id === projectId);
   }
   const newTodo = createTodo(title, desc, priority);
   project.todos.push(newTodo);
@@ -77,7 +77,7 @@ export function addNewTodo(projectId, title, desc, priority) {
 
 // Funtion to update a todo
 export function updateTodo(id, title, description, priority) {
-  const todo = todosList.find(todo => todo.id === id);
+  const todo = todosList.find((todo) => todo.id === id);
   todo.title = title;
   todo.description = description;
   todo.priority = priority;
@@ -85,39 +85,44 @@ export function updateTodo(id, title, description, priority) {
 
 // Function to delete a todo
 export function deleteTodo(projectId, todoId) {
-  const project = projectList.find(project => project.id === projectId);
-  const todoIndex = project.todos.findIndex(todo => todo.id === todoId);
+  const project = projectList.find((project) => project.id === projectId);
+  const todoIndex = project.todos.findIndex((todo) => todo.id === todoId);
   project.todos.splice(todoIndex, 1);
-  const todo = todosList.find(todo => todo.id === todoId);
+  const todo = todosList.find((todo) => todo.id === todoId);
   const todoIndexGlobal = todosList.indexOf(todo);
   todosList.splice(todoIndexGlobal, 1);
 }
 
 // Function to toggle the completion of a todo
 export function toggleTodoCompletion(projectId, todoId) {
-  const project = projectList.find(project => project.id === projectId);
-  const todo = project.todos.find(todo => todo.id === todoId);
+  const project = projectList.find((project) => project.id === projectId);
+  const todo = project.todos.find((todo) => todo.id === todoId);
   todo.completed = !todo.completed;
 }
 
 // Create 3 projects
 // Start with inbox project
 export let inbox = createProject("Inbox");
-addNewTodo(0, "Welcome to your inbox.", "This is where you can add quick todos.", "low");
+addNewTodo(
+  0,
+  "Welcome to your inbox.",
+  "This is where you can add quick todos.",
+  "low"
+);
 
 // Today project - List of all todos due today
 export let today = createProject("Today");
 addNewTodo(1, "Welcome to Today!.", "Todos due today are shown here.", "low");
 
 // Project 1
-addNewProject('Project 1');
+addNewProject("Project 1");
 addNewTodo(2, "Welcome", "This is your first project todo!", "low");
 
 // Project 2
-addNewProject('Project 2');
+addNewProject("Project 2");
 
 //Project 3
-addNewProject('Project 3');
+addNewProject("Project 3");
 
 // Set the current project
 currentProject = projectList[0];
