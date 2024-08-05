@@ -8,8 +8,6 @@ let projectCount = 0;
 // Factory function for a project
 function createProject(name) {
   const id = projectCount++;
-  const defualtTodo = createTodo("New Todo", "Add description", "low");
-  todosList.push(defualtTodo);
   return {
     id: id,
     name,
@@ -105,11 +103,11 @@ export function toggleTodoCompletion(projectId, todoId) {
 // Create 3 projects
 // Start with inbox project
 export let inbox = createProject("Inbox");
-updateTodo(0, "Welcome to your inbox.", "This is " + "where you can add quick todos.");
+addNewTodo(0, "Welcome to your inbox.", "This is where you can add quick todos.", "low");
 
 // Today project - List of all todos due today
 export let today = createProject("Today");
-updateTodo(1, "Welcome to Today!.", "Todos due " + "today are shown here.");
+addNewTodo(1, "Welcome to Today!.", "Todos due today are shown here.", "low");
 
 // Project 1
 addNewProject('Project 1');
