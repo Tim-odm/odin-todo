@@ -214,7 +214,7 @@ function createButtonDiv(modal, isTodoForm) {
     if (isTodoForm) {
       const priority = document.querySelector(".priority-input:checked").value;
       const projectId = Number(document.getElementById("project").value);
-      const title = document.getElementById("id").value;
+      const title = document.getElementById("title").value;
       const desc = document.getElementById("desc").value;
       todoManager.addNewTodo(projectId, title, desc, priority);
       mainContent.updateTodoListDiv();
