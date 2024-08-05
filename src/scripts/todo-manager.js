@@ -11,7 +11,7 @@ function createProject(name) {
   return {
     id: id,
     name,
-    todos: [defualtTodo]
+    todos: []
   };
 }
 
