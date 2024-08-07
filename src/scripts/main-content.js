@@ -33,10 +33,13 @@ export function updateTodoListDiv() {
     const todoDesc = document.createElement("p");
     todoDesc.innerText = todo.description;
 
+    const dueDate = document.createElement("p");
+    dueDate.innerText = `Due: ${todo.dateTime}`;
+
     const checkbox = document.createElement("input");
     checkbox.type = "checkbox";
 
-    todoItem.append(todoTitle, todoDesc, checkbox);
+    todoItem.append(todoTitle, todoDesc, dueDate, checkbox);
     todoListDiv.appendChild(todoItem);
   });
 }
