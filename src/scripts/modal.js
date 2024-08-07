@@ -9,7 +9,7 @@ import closeIcon from "../assets/icons/close.svg";
 const newtodoModalDiv = document.createElement("dialog");
 newtodoModalDiv.classList.add("new-todo-modal");
 
-const newProjectModal  = document.createElement("dialog");
+const newProjectModal = document.createElement("dialog");
 newProjectModal.classList.add("new-project-modal");
 
 document.querySelector("#app").append(newtodoModalDiv);
@@ -34,13 +34,13 @@ function createNewTodoForm() {
 
   const fieldsetList = [];
 
-  for(let x = 0; x < 5; x++) {
+  for (let x = 0; x < 5; x++) {
     fieldsetList.push(document.createElement("fieldset"));
   }
 
   const titleLabel = document.createElement("label");
   titleLabel.classList.add("label");
-  titleLabel.setAttribute("for", "title")
+  titleLabel.setAttribute("for", "title");
   titleLabel.innerText = "Title";
 
   const titleInput = document.createElement("input");
@@ -54,7 +54,7 @@ function createNewTodoForm() {
 
   const descLabel = document.createElement("label");
   descLabel.classList.add("label");
-  descLabel.setAttribute("for", "desc")
+  descLabel.setAttribute("for", "desc");
   descLabel.innerText = "Todo Description";
 
   const descInput = document.createElement("textarea");
@@ -68,7 +68,7 @@ function createNewTodoForm() {
 
   const priorityLabel = document.createElement("label");
   priorityLabel.classList.add("label");
-  priorityLabel.setAttribute("for", "priority")
+  priorityLabel.setAttribute("for", "priority");
   priorityLabel.innerText = "Priority";
 
   const radioDiv = document.createElement("div");
@@ -78,39 +78,39 @@ function createNewTodoForm() {
   const priorityLabels = [];
   const priorityDivs = [];
   for (let x = 0; x < 3; x++) {
-   priorityInputs.push(document.createElement("input"));
-   priorityInputs[x].setAttribute("type", "radio");
-   priorityInputs[x].setAttribute("name", "priority");
-   priorityInputs[x].classList.add("priority-input"); 
-   priorityLabels.push(document.createElement("label"));
-   priorityDivs.push(document.createElement("div"));
+    priorityInputs.push(document.createElement("input"));
+    priorityInputs[x].setAttribute("type", "radio");
+    priorityInputs[x].setAttribute("name", "priority");
+    priorityInputs[x].classList.add("priority-input");
+    priorityLabels.push(document.createElement("label"));
+    priorityDivs.push(document.createElement("div"));
   }
 
   priorityInputs[0].id = "high";
   priorityInputs[0].value = "high";
   priorityLabels[0].innerText = "High";
-  priorityLabels[0].setAttribute("for", "high")
+  priorityLabels[0].setAttribute("for", "high");
   priorityDivs[0].append(priorityInputs[0], priorityLabels[0]);
 
   priorityInputs[1].id = "medium";
   priorityInputs[1].value = "medium";
   priorityLabels[1].innerText = "Medium";
-  priorityLabels[1].setAttribute("for", "medium")
+  priorityLabels[1].setAttribute("for", "medium");
   priorityDivs[1].append(priorityInputs[1], priorityLabels[1]);
 
   priorityInputs[2].id = "low";
   priorityInputs[2].value = "low";
   priorityLabels[2].innerText = "Low";
-  priorityLabels[2].setAttribute("for", "low")
+  priorityLabels[2].setAttribute("for", "low");
   priorityDivs[2].append(priorityInputs[2], priorityLabels[2]);
 
-  radioDiv.append(priorityDivs[0], priorityDivs[1], priorityDivs[2])
+  radioDiv.append(priorityDivs[0], priorityDivs[1], priorityDivs[2]);
 
   fieldsetList[2].append(priorityLabel, radioDiv);
 
   const projectLabel = document.createElement("label");
   projectLabel.classList.add("label");
-  projectLabel.setAttribute("for", "project")
+  projectLabel.setAttribute("for", "project");
   projectLabel.innerText = "Select Project";
 
   const projectInput = createProjectOptions();
@@ -137,7 +137,7 @@ function createNewTodoForm() {
   // console.log(date);
   dateInput.value = date;
 
-  dateDiv.append(dateLabel, dateInput)
+  dateDiv.append(dateLabel, dateInput);
 
   const timeDiv = document.createElement("div");
   timeDiv.classList.add("time-div");
@@ -158,7 +158,7 @@ function createNewTodoForm() {
   dateTimeDiv.append(dateDiv, timeDiv);
   fieldsetList[4].appendChild(dateTimeDiv);
 
-  fieldsetList.forEach(set => {
+  fieldsetList.forEach((set) => {
     form.appendChild(set);
   });
 
@@ -193,7 +193,7 @@ function createProjectOptions() {
   todayOption.text = todoManager.today.name;
   projectInput.appendChild(todayOption);
 
-  todoManager.projectList.forEach(todo => {
+  todoManager.projectList.forEach((todo) => {
     const option = document.createElement("option");
     option.value = todo.id;
     option.innerText = todo.name;
@@ -204,7 +204,6 @@ function createProjectOptions() {
 }
 
 function createButtonDiv(modal, isTodoForm) {
-
   const buttonDiv = document.createElement("div");
   buttonDiv.classList.add("new-todo-button-div");
 
@@ -252,12 +251,12 @@ function createNewProjectForm() {
 
   const modalHeader = document.createElement("div");
   modalHeader.classList.add("new-project-modal-header");
-  
+
   modalHeader.innerHTML = `<h3>New Project</h3>${closeIcon}`;
   modalHeader.children[1].classList.add("icon");
   modalHeader.children[1].addEventListener("click", () => {
     newProjectModal.close();
-  })
+  });
   wrapper.appendChild(modalHeader);
 
   const projectNameInput = document.createElement("input");
@@ -265,7 +264,7 @@ function createNewProjectForm() {
   projectNameInput.setAttribute("name", "project-name");
   projectNameInput.setAttribute("type", "text");
   wrapper.appendChild(projectNameInput);
-  
+
   const buttonDiv = createButtonDiv(newProjectModal, false);
   wrapper.appendChild(buttonDiv);
 
