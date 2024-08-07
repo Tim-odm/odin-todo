@@ -49,19 +49,20 @@ export function setCurrentProject(id) {
 }
 
 // Factory function for a todo
-function createTodo(title, description, priority) {
+function createTodo(title, description, priority, dateTime) {
   const id = todoCount++;
   return {
     id: id,
     title,
     description,
     priority,
+    dateTime: dateTime,
     completed: false,
   };
 }
 
 // Function to add a todo to a project
-export function addNewTodo(projectId, title, desc, priority) {
+export function addNewTodo(projectId, title, desc, priority, dateTime) {
   let project;
   if (projectId == 0) {
     project = inbox;
@@ -70,7 +71,7 @@ export function addNewTodo(projectId, title, desc, priority) {
   } else {
     project = projectList.find((project) => project.id === projectId);
   }
-  const newTodo = createTodo(title, desc, priority);
+  const newTodo = createTodo(title, desc, priority, dateTime);
   project.todos.push(newTodo);
   todosList.push(newTodo);
 }
@@ -112,11 +113,23 @@ addNewTodo(
 
 // Today project - List of all todos due today
 export const today = createProject("Today");
-addNewTodo(1, "Welcome to Today!.", "Todos due today are shown here.", "low");
+addNewTodo(
+  1,
+  "Welcome to Today!.",
+  "Todos due today are shown here.",
+  "low",
+  "2024-08-07T09:00:00"
+);
 
 // Project 1
 addNewProject("Project 1");
-addNewTodo(2, "Welcome", "This is your first project todo!", "low");
+addNewTodo(
+  2,
+  "Welcome",
+  "This is your first project todo!",
+  "low",
+  "2024-08-07T09:00:00"
+);
 
 // Project 2
 addNewProject("Project 2");
