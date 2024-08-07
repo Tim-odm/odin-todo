@@ -265,6 +265,15 @@ function createNewProjectForm() {
   projectNameInput.setAttribute("type", "text");
   wrapper.appendChild(projectNameInput);
 
+  projectNameInput.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+    todoManager.addNewProject(projectNameInput.value);
+    sidebar.updateProjectListDiv();
+    newProjectModal.innerHTML = "";
+    newProjectModal.close();
+    }
+  });
+
   const buttonDiv = createButtonDiv(newProjectModal, false);
   wrapper.appendChild(buttonDiv);
 
