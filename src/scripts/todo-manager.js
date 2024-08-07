@@ -1,6 +1,6 @@
 // This file handles the logic for creating and managing todos/projects.
-export let projectList = [];
-export let todosList = [];
+export const projectList = [];
+export const todosList = [];
 export let currentProject;
 let todoCount = 0;
 let projectCount = 0;
@@ -102,7 +102,7 @@ export function toggleTodoCompletion(projectId, todoId) {
 
 // Create 3 projects
 // Start with inbox project
-export let inbox = createProject("Inbox");
+export const inbox = createProject("Inbox");
 addNewTodo(
   0,
   "Welcome to your inbox.",
@@ -111,7 +111,7 @@ addNewTodo(
 );
 
 // Today project - List of all todos due today
-export let today = createProject("Today");
+export const today = createProject("Today");
 addNewTodo(1, "Welcome to Today!.", "Todos due today are shown here.", "low");
 
 // Project 1
