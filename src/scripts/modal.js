@@ -215,7 +215,16 @@ function createButtonDiv(modal, isTodoForm) {
       const projectId = Number(document.getElementById("project").value);
       const title = document.getElementById("title").value;
       const desc = document.getElementById("desc").value;
-      todoManager.addNewTodo(projectId, title, desc, priority);
+      const date = document.getElementById("date").value;
+      const time = document.getElementById("time").value;
+
+      todoManager.addNewTodo(
+        projectId,
+        title,
+        desc,
+        priority,
+        `${date}T${time}`
+      );
       mainContent.updateTodoListDiv();
     } else {
       const projectName = document.getElementById("project-name").value;
@@ -267,10 +276,10 @@ function createNewProjectForm() {
 
   projectNameInput.addEventListener("keydown", (e) => {
     if (e.key === "Enter") {
-    todoManager.addNewProject(projectNameInput.value);
-    sidebar.updateProjectListDiv();
-    newProjectModal.innerHTML = "";
-    newProjectModal.close();
+      todoManager.addNewProject(projectNameInput.value);
+      sidebar.updateProjectListDiv();
+      newProjectModal.innerHTML = "";
+      newProjectModal.close();
     }
   });
 
