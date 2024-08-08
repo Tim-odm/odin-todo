@@ -112,13 +112,14 @@ addNewTodo(
 );
 
 // Today project - List of all todos due today
+const todayDate = new Date().toISOString().substring(0, 10);
 export const today = createProject("Today");
 addNewTodo(
   1,
   "Welcome to Today!.",
   "Todos due today are shown here.",
   "low",
-  "2024-08-07T09:00:00"
+  `${todayDate}T09:00`
 );
 
 // Project 1
@@ -128,7 +129,7 @@ addNewTodo(
   "Welcome",
   "This is your first project todo!",
   "low",
-  "2024-08-07T09:00:00"
+  `${todayDate}T09:00`
 );
 
 // Project 2
