@@ -34,7 +34,7 @@ export function updateTodoListDiv() {
     todoDesc.innerText = todo.description;
 
     const dueDate = document.createElement("p");
-    dueDate.innerText = `Due: ${todo.dateTime}`;
+    dueDate.innerText = `Due: ${todo.dateTime.substring(0, 10)} @${todo.dateTime.substring(11, 16)}`;
 
     const checkbox = document.createElement("input");
     checkbox.type = "checkbox";
