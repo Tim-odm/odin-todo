@@ -1,6 +1,9 @@
 // Module imports
 import { currentProject } from "./todo-manager";
 
+// Icon imports
+import deleteIcon from "../assets/icons/delete-outline.svg";
+
 function drawMainContent() {
   const mainDiv = document.createElement("div");
   mainDiv.classList.add("main-content");
@@ -38,8 +41,13 @@ export function updateTodoListDiv() {
 
     const checkbox = document.createElement("input");
     checkbox.type = "checkbox";
+    
+    const deleteIconDiv = document.createElement("div");
+    deleteIconDiv.classList.add("delete-icon-wrapper");
+    deleteIconDiv.innerHTML = `${deleteIcon}`;
+    deleteIconDiv.children[0].classList.add("icon");
 
-    todoItem.append(todoTitle, todoDesc, dueDate, checkbox);
+    todoItem.append(todoTitle, todoDesc, dueDate, checkbox, deleteIconDiv);
     todoListDiv.appendChild(todoItem);
   });
 }
