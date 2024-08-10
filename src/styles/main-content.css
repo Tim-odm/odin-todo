@@ -39,3 +39,14 @@
   justify-content: flex-end;
   margin-top: 12px;
 }
+
+.delete-icon-wrapper > .icon {
+  border-radius: 50%;
+  cursor: pointer;
+  padding: 4px;
+  transition: 150ms ease-in;
+}
+
+.delete-icon-wrapper > .icon:hover {
+  background-color: rgba(0, 0, 0, .1);
+}
