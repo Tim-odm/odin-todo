@@ -6,6 +6,7 @@
 }
 
 .icon {
+  box-sizing: content-box;
   width: 32px;
 }
 
