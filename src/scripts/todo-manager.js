@@ -102,6 +102,9 @@ export function toggleTodoCompletion(projectId, todoId) {
 }
 
 // Create 3 projects
+// Today project - List of all todos due today
+const todayDate = new Date().toISOString().substring(0, 10);
+
 // Start with inbox project
 export const inbox = createProject("Inbox");
 addNewTodo(
@@ -112,8 +115,6 @@ addNewTodo(
   `${todayDate}T09:00`
 );
 
-// Today project - List of all todos due today
-const todayDate = new Date().toISOString().substring(0, 10);
 export const today = createProject("Today");
 addNewTodo(
   1,
