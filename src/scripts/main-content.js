@@ -8,10 +8,15 @@ function drawMainContent() {
   const mainDiv = document.createElement("div");
   mainDiv.classList.add("main-content");
 
+  const projectHeaderDiv = document.createElement("div");
+
   const projectHeader = document.createElement("h3");
   projectHeader.classList.add("project-header");
   projectHeader.innerText = currentProject.name;
-  mainDiv.appendChild(projectHeader);
+  projectHeaderDiv.appendChild(projectHeader);
+  projectHeaderDiv.innerHTML += `${deleteIcon}`;
+  projectHeaderDiv.children[1].classList.add("icon");
+  mainDiv.appendChild(projectHeaderDiv);
 
   const todoListDiv = document.createElement("div");
   todoListDiv.classList.add("todo-list-div");
