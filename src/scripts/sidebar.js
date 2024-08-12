@@ -83,11 +83,8 @@ export function updateProjectListDiv() {
     const listItem = document.createElement("li");
     listItem.textContent = project.name;
     listItem.addEventListener("click", () => {
-      const projectHeader = document.querySelector(
-        ".main-header-wrapper > .project-header"
-      );
-      projectHeader.innerHTML = project.name;
       todoManager.setCurrentProject(project.id);
+      mainContHelper.updateHeader();
       mainContHelper.updateTodoListDiv();
     });
     orderdedList.appendChild(listItem);

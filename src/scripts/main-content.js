@@ -14,7 +14,7 @@ function drawMainContent() {
 
   const projectHeader = document.createElement("h3");
   projectHeader.classList.add("project-header");
-  projectHeader.innerText = currentProject.name;
+
   projectHeaderDiv.appendChild(projectHeader);
 
   projectHeaderDiv.innerHTML += `${deleteIcon}`;
@@ -24,6 +24,7 @@ function drawMainContent() {
     setCurrentProject(0);
     sidebar.updateProjectListDiv();
     updateTodoListDiv();
+    updateHeader();
   });
   mainDiv.appendChild(projectHeaderDiv);
 
@@ -32,7 +33,12 @@ function drawMainContent() {
   mainDiv.appendChild(todoListDiv);
 
   document.querySelector("#app").appendChild(mainDiv);
+  updateHeader();
   updateTodoListDiv();
+}
+
+export function updateHeader() {
+  document.querySelector(".project-header").innerHTML = currentProject.name;
 }
 
 export function updateTodoListDiv() {
