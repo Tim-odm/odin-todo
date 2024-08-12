@@ -44,7 +44,7 @@ export function setCurrentProject(id) {
   } else if (id === 1) {
     currentProject = today;
   } else {
-    currentProject = projectList[id - 2];
+    currentProject = projectList.find((project) => project.id === id);
   }
 }
 
