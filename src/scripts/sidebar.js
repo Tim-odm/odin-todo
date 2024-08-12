@@ -38,8 +38,10 @@ function drawSidebarOptions() {
   sidebarOptions.classList.add("sidebar-options");
   const inboxOption = document.createElement("li");
   inboxOption.innerHTML = `${inboxIcon} <p>Inbox</p>`;
-  inboxOption.addEventListener("click", (e) => {
-    const projectHeader = document.querySelector(".main-content>.project-header");
+  inboxOption.addEventListener("click", () => {
+    const projectHeader = document.querySelector(
+      ".main-header-wrapper > .project-header"
+    );
     projectHeader.innerHTML = "Inbox";
     todoManager.setCurrentProject(0);
     updateProjectListDiv();
@@ -47,8 +49,10 @@ function drawSidebarOptions() {
   });
   const todayOption = document.createElement("li");
   todayOption.innerHTML = `${calIcon} <p>Today</p>`;
-  todayOption.addEventListener("click", (e) => {
-    const projectHeader = document.querySelector(".main-content>.project-header");
+  todayOption.addEventListener("click", () => {
+    const projectHeader = document.querySelector(
+      ".main-header-wrapper > .project-header"
+    );
     projectHeader.innerHTML = "Today";
     todoManager.setCurrentProject(1);
     updateProjectListDiv();
@@ -57,7 +61,7 @@ function drawSidebarOptions() {
   const projectsOption = document.createElement("li");
   projectsOption.innerHTML = `${projectsIcon} <p>Projects</p>${menuUp}`;
   projectsOption.children[2].classList.add("icon", "arrow-icon", "up");
-  projectsOption.addEventListener("click", (e) => {
+  projectsOption.addEventListener("click", () => {
     const projectListDiv = document.querySelector("#project-list-div");
     if (projectListDiv.classList.toggle("hidden")) {
       projectListDiv.style.height = "0px";
@@ -66,7 +70,7 @@ function drawSidebarOptions() {
     }
     projectsOption.children[2].classList.toggle("down");
   });
-  sidebarOptions.append(inboxOption, todayOption, projectsOption)
+  sidebarOptions.append(inboxOption, todayOption, projectsOption);
 
   return sidebarOptions;
 }
@@ -75,11 +79,13 @@ function drawSidebarOptions() {
 export function updateProjectListDiv() {
   const orderdedList = document.querySelector(".project-ol");
   orderdedList.innerHTML = "";
-  todoManager.projectList.forEach(project => {
+  todoManager.projectList.forEach((project) => {
     const listItem = document.createElement("li");
     listItem.textContent = project.name;
     listItem.addEventListener("click", () => {
-      const projectHeader = document.querySelector(".main-content>.project-header");
+      const projectHeader = document.querySelector(
+        ".main-header-wrapper > .project-header"
+      );
       projectHeader.innerHTML = project.name;
       todoManager.setCurrentProject(project.id);
       mainContHelper.updateTodoListDiv();

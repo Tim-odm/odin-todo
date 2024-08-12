@@ -1,5 +1,6 @@
 // Module imports
-import { currentProject, deleteTodo } from "./todo-manager";
+import { currentProject, deleteTodo, deleteProject, setCurrentProject } from "./todo-manager";
+import * as sidebar from "./sidebar.js";
 
 // Icon imports
 import deleteIcon from "../assets/icons/delete-outline.svg";
@@ -15,8 +16,15 @@ function drawMainContent() {
   projectHeader.classList.add("project-header");
   projectHeader.innerText = currentProject.name;
   projectHeaderDiv.appendChild(projectHeader);
+
   projectHeaderDiv.innerHTML += `${deleteIcon}`;
   projectHeaderDiv.children[1].classList.add("icon");
+  projectHeaderDiv.children[1].addEventListener("click", () => {
+    deleteProject(currentProject.id); 
+    setCurrentProject(0);
+    sidebar.updateProjectListDiv();
+    updateTodoListDiv();
+  });
   mainDiv.appendChild(projectHeaderDiv);
 
   const todoListDiv = document.createElement("div");
