@@ -39,23 +39,15 @@ function drawSidebarOptions() {
   const inboxOption = document.createElement("li");
   inboxOption.innerHTML = `${inboxIcon} <p>Inbox</p>`;
   inboxOption.addEventListener("click", () => {
-    const projectHeader = document.querySelector(
-      ".main-header-wrapper > .project-header"
-    );
-    projectHeader.innerHTML = "Inbox";
     todoManager.setCurrentProject(0);
-    updateProjectListDiv();
+    mainContHelper.updateHeader();
     mainContHelper.updateTodoListDiv();
   });
   const todayOption = document.createElement("li");
   todayOption.innerHTML = `${calIcon} <p>Today</p>`;
   todayOption.addEventListener("click", () => {
-    const projectHeader = document.querySelector(
-      ".main-header-wrapper > .project-header"
-    );
-    projectHeader.innerHTML = "Today";
     todoManager.setCurrentProject(1);
-    updateProjectListDiv();
+    mainContHelper.updateHeader();
     mainContHelper.updateTodoListDiv();
   });
   const projectsOption = document.createElement("li");

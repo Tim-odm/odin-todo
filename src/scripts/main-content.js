@@ -17,15 +17,15 @@ function drawMainContent() {
 
   projectHeaderDiv.appendChild(projectHeader);
 
-  projectHeaderDiv.innerHTML += `${deleteIcon}`;
-  projectHeaderDiv.children[1].classList.add("icon");
-  projectHeaderDiv.children[1].addEventListener("click", () => {
-    deleteProject(currentProject.id); 
-    setCurrentProject(0);
-    sidebar.updateProjectListDiv();
-    updateTodoListDiv();
-    updateHeader();
-  });
+  // projectHeaderDiv.innerHTML += `${deleteIcon}`;
+  // projectHeaderDiv.children[1].classList.add("icon");
+  // projectHeaderDiv.children[1].addEventListener("click", () => {
+  //   deleteProject(currentProject.id); 
+  //   setCurrentProject(0);
+  //   sidebar.updateProjectListDiv();
+  //   updateTodoListDiv();
+  //   updateHeader();
+  // });
   mainDiv.appendChild(projectHeaderDiv);
 
   const todoListDiv = document.createElement("div");
@@ -38,7 +38,25 @@ function drawMainContent() {
 }
 
 export function updateHeader() {
-  document.querySelector(".project-header").innerHTML = currentProject.name;
+  const headerDiv = document.querySelector(".main-header-wrapper");
+  headerDiv.innerHTML = "";
+
+  const projectHeader = document.createElement("h3");
+  projectHeader.classList.add("project-header");
+  projectHeader.innerText = currentProject.name;
+  headerDiv.appendChild(projectHeader);
+
+  if (currentProject.id > 1) {
+    headerDiv.innerHTML += `${deleteIcon}`;
+    headerDiv.children[1].classList.add("icon");
+    headerDiv.children[1].addEventListener("click", () => {
+      deleteProject(currentProject.id); 
+      setCurrentProject(0);
+      sidebar.updateProjectListDiv();
+      updateTodoListDiv();
+      updateHeader();
+    });
+  }
 }
 
 export function updateTodoListDiv() {
