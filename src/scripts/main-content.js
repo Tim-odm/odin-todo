@@ -9,6 +9,7 @@ function drawMainContent() {
   mainDiv.classList.add("main-content");
 
   const projectHeaderDiv = document.createElement("div");
+  projectHeaderDiv.classList.add("main-header-wrapper"); 
 
   const projectHeader = document.createElement("h3");
   projectHeader.classList.add("project-header");
