@@ -45,11 +45,19 @@ function createNewTodoForm() {
   titleLabel.innerText = "Title";
 
   const titleInput = document.createElement("input");
-  titleInput.classList.add("form-input");
+  titleInput.classList.add("form-text-input");
   titleInput.setAttribute("id", "title");
   titleInput.setAttribute("name", "title");
   titleInput.setAttribute("type", "text");
   titleInput.setAttribute("required", "");
+  titleInput.addEventListener("invalid", () => {
+    titleInput.classList.toggle("invalid");
+  });
+  titleInput.addEventListener("blur", () => {
+    if (!titleInput.validity.valueMissing) {
+      titleInput.classList.toggle("invalid");
+    }
+  });
 
   fieldsetList[0].append(titleLabel, titleInput);
 
@@ -59,11 +67,19 @@ function createNewTodoForm() {
   descLabel.innerText = "Todo Description";
 
   const descInput = document.createElement("textarea");
-  descInput.classList.add("form-input");
+  descInput.classList.add("form-text-input");
   descInput.setAttribute("id", "desc");
   descInput.setAttribute("name", "desc");
   descInput.setAttribute("type", "text");
   descInput.setAttribute("required", "");
+  descInput.addEventListener("invalid", () => {
+    descInput.classList.toggle("invalid");
+  });
+  descInput.addEventListener("blur", () => {
+    if (!descInput.validity.valueMissing) {
+      descInput.classList.toggle("invalid");
+    }
+  });
 
   fieldsetList[1].append(descLabel, descInput);
 

@@ -38,6 +38,10 @@ fieldset label {
   width: 150px; 
 }
 
+.form-text-input.invalid {
+  border: 2px solid red;
+}
+
 .priority-radio-div {
   display: flex;
   justify-content: space-around;
