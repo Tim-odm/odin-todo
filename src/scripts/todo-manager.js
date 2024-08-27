@@ -86,7 +86,14 @@ export function updateTodo(id, title, description, priority) {
 
 // Function to delete a todo
 export function deleteTodo(projectId, todoId) {
-  const project = projectList.find((project) => project.id === projectId);
+  let project;
+  if (projectId == 0) {
+    project = inbox;
+  } else if (projectId == 1) {
+    project = today;
+  } else {
+    project = projectList.find((project) => project.id === projectId);
+  }
   const todoIndex = project.todos.findIndex((todo) => todo.id === todoId);
   project.todos.splice(todoIndex, 1);
   const todo = todosList.find((todo) => todo.id === todoId);
