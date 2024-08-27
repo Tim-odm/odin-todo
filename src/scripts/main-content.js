@@ -1,5 +1,5 @@
 // Module imports
-import { currentProject, deleteTodo, deleteProject, setCurrentProject } from "./todo-manager";
+import { currentProject, deleteTodo, deleteProject, setCurrentProject, toggleTodoCompletion } from "./todo-manager";
 import * as sidebar from "./sidebar.js";
 
 // Icon imports
@@ -79,6 +79,9 @@ export function updateTodoListDiv() {
 
     const checkbox = document.createElement("input");
     checkbox.type = "checkbox";
+    checkbox.addEventListener("change", () => {
+      toggleTodoCompletion(currentProject.id, todo.id);
+    });
     
     const deleteIconDiv = document.createElement("div");
     deleteIconDiv.classList.add("delete-icon-wrapper");
