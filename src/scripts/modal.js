@@ -209,7 +209,8 @@ function createButtonDiv(modal, isTodoForm) {
 
   const submitButton = document.createElement("button");
   submitButton.innerText = "Submit";
-  submitButton.addEventListener("click", () => {
+  submitButton.addEventListener("click", (e) => {
+    e.preventDefault();
     if (isTodoForm) {
       const priority = document.querySelector(".priority-input:checked").value;
       const projectId = Number(document.getElementById("project").value);
