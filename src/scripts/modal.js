@@ -273,6 +273,10 @@ function createNewProjectForm() {
   const wrapper = document.createElement("div");
   wrapper.classList.add("project-modal-wrapper");
 
+  const form = document.createElement("form");
+  form.setAttribute("novalidate", "");
+  form.id = "new-project-form";
+
   const modalHeader = document.createElement("div");
   modalHeader.classList.add("new-project-modal-header");
 
@@ -281,13 +285,14 @@ function createNewProjectForm() {
   modalHeader.children[1].addEventListener("click", () => {
     newProjectModal.close();
   });
-  wrapper.appendChild(modalHeader);
+  form.appendChild(modalHeader);
 
   const projectNameInput = document.createElement("input");
   projectNameInput.setAttribute("id", "project-name");
   projectNameInput.setAttribute("name", "project-name");
   projectNameInput.setAttribute("type", "text");
-  wrapper.appendChild(projectNameInput);
+  projectNameInput.setAttribute("required", "");
+  form.appendChild(projectNameInput);
 
   projectNameInput.addEventListener("keydown", (e) => {
     if (e.key === "Enter") {
@@ -297,6 +302,8 @@ function createNewProjectForm() {
       newProjectModal.close();
     }
   });
+
+  wrapper.appendChild(form);
 
   const buttonDiv = createButtonDiv(newProjectModal, false);
   wrapper.appendChild(buttonDiv);
