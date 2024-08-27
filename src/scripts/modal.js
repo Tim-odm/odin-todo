@@ -304,10 +304,19 @@ function createNewProjectForm() {
   form.appendChild(modalHeader);
 
   const projectNameInput = document.createElement("input");
+  projectNameInput.classList.add("form-text-input");
   projectNameInput.setAttribute("id", "project-name");
   projectNameInput.setAttribute("name", "project-name");
   projectNameInput.setAttribute("type", "text");
   projectNameInput.setAttribute("required", "");
+  projectNameInput.addEventListener("invalid", () => {
+    projectNameInput.classList.toggle("invalid");
+  });
+  projectNameInput.addEventListener("blur", () => {
+    if (!projectNameInput.validity.valueMissing) {
+      projectNameInput.classList.toggle("invalid");
+    }
+  });
   form.appendChild(projectNameInput);
 
   projectNameInput.addEventListener("keydown", (e) => {
