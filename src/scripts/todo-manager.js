@@ -106,7 +106,6 @@ export function toggleTodoCompletion(projectId, todoId) {
   const project = projectList.find((project) => project.id === projectId);
   const todo = project.todos.find((todo) => todo.id === todoId);
   todo.completed = !todo.completed;
-  console.log(project.id, todo.id, todo.completed);
 }
 
 // Create 3 projects
