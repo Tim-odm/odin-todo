@@ -31,6 +31,7 @@ function createNewTodoForm() {
   const form = document.createElement("form");
   form.id = "new-todo-form";
   form.method = "dialog";
+  form.setAttribute("novalidate", "");
 
   const fieldsetList = [];
 
@@ -212,28 +213,41 @@ function createButtonDiv(modal, isTodoForm) {
   submitButton.addEventListener("click", (e) => {
     e.preventDefault();
     if (isTodoForm) {
-      const priority = document.querySelector(".priority-input:checked").value;
-      const projectId = Number(document.getElementById("project").value);
-      const title = document.getElementById("title").value;
-      const desc = document.getElementById("desc").value;
-      const date = document.getElementById("date").value;
-      const time = document.getElementById("time").value;
+      // Validate form: if valid add new todo
+      const form = document.getElementById("new-todo-form");
+      if (form.checkValidity()) {
+        const priority = document.querySelector(
+          ".priority-input:checked"
+        ).value;
+        const projectId = Number(document.getElementById("project").value);
+        const title = document.getElementById("title").value;
+        const desc = document.getElementById("desc").value;
+        const date = document.getElementById("date").value;
+        const time = document.getElementById("time").value;
 
-      todoManager.addNewTodo(
-        projectId,
-        title,
-        desc,
-        priority,
-        `${date}T${time}`
-      );
-      mainContent.updateTodoListDiv();
+        todoManager.addNewTodo(
+          projectId,
+          title,
+          desc,
+          priority,
+          `${date}T${time}`
+        );
+        mainContent.updateTodoListDiv();
+        modal.innerHTML = "";
+        modal.close();
+      } else {
+        console.log("Error");
+      }
     } else {
-      const projectName = document.getElementById("project-name").value;
-      todoManager.addNewProject(projectName);
-      sidebar.updateProjectListDiv();
+      const form = document.getElementById("new-project-form");
+      if (form.checkValidity()) {
+        const projectName = document.getElementById("project-name").value;
+        todoManager.addNewProject(projectName);
+        sidebar.updateProjectListDiv();
+        modal.innerHTML = "";
+        modal.close();
+      }
     }
-    modal.innerHTML = "";
-    modal.close();
   });
 
   const closeButton = document.createElement("button");
