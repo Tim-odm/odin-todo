@@ -7,12 +7,11 @@ export default [
       globals: globals.browser,
     },
     files: ["src/scripts/*.js"],
-    ignores: ["*.config.js"],
+    ignores: ["./webpack.common.js", "./webpack.dev.js", "./webpack.prod.js"],
     rules: {
       semi: "error",
       "prefer-const": "error",
       "no-unused-vars": "warn",
     },
   },
-  pluginJs.configs.recommended,
 ];

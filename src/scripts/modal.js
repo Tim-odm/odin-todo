@@ -31,6 +31,7 @@ function createNewTodoForm() {
   const form = document.createElement("form");
   form.id = "new-todo-form";
   form.method = "dialog";
+  form.setAttribute("novalidate", "");
 
   const fieldsetList = [];
 
@@ -44,11 +45,19 @@ function createNewTodoForm() {
   titleLabel.innerText = "Title";
 
   const titleInput = document.createElement("input");
-  titleInput.classList.add("form-input");
+  titleInput.classList.add("form-text-input");
   titleInput.setAttribute("id", "title");
   titleInput.setAttribute("name", "title");
   titleInput.setAttribute("type", "text");
   titleInput.setAttribute("required", "");
+  titleInput.addEventListener("invalid", () => {
+    titleInput.classList.toggle("invalid");
+  });
+  titleInput.addEventListener("blur", () => {
+    if (!titleInput.validity.valueMissing) {
+      titleInput.classList.toggle("invalid");
+    }
+  });
 
   fieldsetList[0].append(titleLabel, titleInput);
 
@@ -58,11 +67,19 @@ function createNewTodoForm() {
   descLabel.innerText = "Todo Description";
 
   const descInput = document.createElement("textarea");
-  descInput.classList.add("form-input");
+  descInput.classList.add("form-text-input");
   descInput.setAttribute("id", "desc");
   descInput.setAttribute("name", "desc");
   descInput.setAttribute("type", "text");
   descInput.setAttribute("required", "");
+  descInput.addEventListener("invalid", () => {
+    descInput.classList.toggle("invalid");
+  });
+  descInput.addEventListener("blur", () => {
+    if (!descInput.validity.valueMissing) {
+      descInput.classList.toggle("invalid");
+    }
+  });
 
   fieldsetList[1].append(descLabel, descInput);
 
@@ -209,30 +226,44 @@ function createButtonDiv(modal, isTodoForm) {
 
   const submitButton = document.createElement("button");
   submitButton.innerText = "Submit";
-  submitButton.addEventListener("click", () => {
+  submitButton.addEventListener("click", (e) => {
+    e.preventDefault();
     if (isTodoForm) {
-      const priority = document.querySelector(".priority-input:checked").value;
-      const projectId = Number(document.getElementById("project").value);
-      const title = document.getElementById("title").value;
-      const desc = document.getElementById("desc").value;
-      const date = document.getElementById("date").value;
-      const time = document.getElementById("time").value;
+      // Validate form: if valid add new todo
+      const form = document.getElementById("new-todo-form");
+      if (form.checkValidity()) {
+        const priority = document.querySelector(
+          ".priority-input:checked"
+        ).value;
+        const projectId = Number(document.getElementById("project").value);
+        const title = document.getElementById("title").value;
+        const desc = document.getElementById("desc").value;
+        const date = document.getElementById("date").value;
+        const time = document.getElementById("time").value;
 
-      todoManager.addNewTodo(
-        projectId,
-        title,
-        desc,
-        priority,
-        `${date}T${time}`
-      );
-      mainContent.updateTodoListDiv();
+        todoManager.addNewTodo(
+          projectId,
+          title,
+          desc,
+          priority,
+          `${date}T${time}`
+        );
+        mainContent.updateTodoListDiv();
+        modal.innerHTML = "";
+        modal.close();
+      } else {
+        console.log("Error");
+      }
     } else {
-      const projectName = document.getElementById("project-name").value;
-      todoManager.addNewProject(projectName);
-      sidebar.updateProjectListDiv();
+      const form = document.getElementById("new-project-form");
+      if (form.checkValidity()) {
+        const projectName = document.getElementById("project-name").value;
+        todoManager.addNewProject(projectName);
+        sidebar.updateProjectListDiv();
+        modal.innerHTML = "";
+        modal.close();
+      }
     }
-    modal.innerHTML = "";
-    modal.close();
   });
 
   const closeButton = document.createElement("button");
@@ -258,6 +289,10 @@ function createNewProjectForm() {
   const wrapper = document.createElement("div");
   wrapper.classList.add("project-modal-wrapper");
 
+  const form = document.createElement("form");
+  form.setAttribute("novalidate", "");
+  form.id = "new-project-form";
+
   const modalHeader = document.createElement("div");
   modalHeader.classList.add("new-project-modal-header");
 
@@ -266,13 +301,23 @@ function createNewProjectForm() {
   modalHeader.children[1].addEventListener("click", () => {
     newProjectModal.close();
   });
-  wrapper.appendChild(modalHeader);
+  form.appendChild(modalHeader);
 
   const projectNameInput = document.createElement("input");
+  projectNameInput.classList.add("form-text-input");
   projectNameInput.setAttribute("id", "project-name");
   projectNameInput.setAttribute("name", "project-name");
   projectNameInput.setAttribute("type", "text");
-  wrapper.appendChild(projectNameInput);
+  projectNameInput.setAttribute("required", "");
+  projectNameInput.addEventListener("invalid", () => {
+    projectNameInput.classList.toggle("invalid");
+  });
+  projectNameInput.addEventListener("blur", () => {
+    if (!projectNameInput.validity.valueMissing) {
+      projectNameInput.classList.toggle("invalid");
+    }
+  });
+  form.appendChild(projectNameInput);
 
   projectNameInput.addEventListener("keydown", (e) => {
     if (e.key === "Enter") {
@@ -282,6 +327,8 @@ function createNewProjectForm() {
       newProjectModal.close();
     }
   });
+
+  wrapper.appendChild(form);
 
   const buttonDiv = createButtonDiv(newProjectModal, false);
   wrapper.appendChild(buttonDiv);

@@ -14,7 +14,7 @@ export function drawHeader() {
   domHeader.appendChild(headerDiv);
   const headerLeftSideDiv = document.createElement("div");
   headerLeftSideDiv.classList.add("header-leftside");
-  headerDiv.appendChild(headerLeftSideDiv)
+  headerDiv.appendChild(headerLeftSideDiv);
 
   headerLeftSideDiv.innerHTML = `${menuIcon}${homeIcon}${plusIcon}`;
   for (let i = 0; i < headerLeftSideDiv.childElementCount; i++) {
@@ -23,7 +23,7 @@ export function drawHeader() {
 
   headerLeftSideDiv.children[2].addEventListener("click", (e) => {
     modal.drawNewTodoModal();
-  })
+  });
 
   document.querySelector("#app").appendChild(domHeader);
 }
